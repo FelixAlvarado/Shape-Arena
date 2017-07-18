@@ -6,12 +6,17 @@ var drawingSurface = canvas.getContext("2d");
 var sprites = [];
 var missiles = [];
 var assetsToLoad = [];
+var manaSprites = [];
 
 
 
 
 sprites.push(line);
-
+manaSprites.push(mana);
+manaSprites.push(mbTop);
+manaSprites.push(mbBottom);
+manaSprites.push(mbLeft);
+manaSprites.push(mbRight);
 
 
 var image = new Image();
@@ -62,12 +67,17 @@ window.addEventListener("keydown", function(event)
     break;
 
     case SPACE:
+    if (mana.swx < 25)
+    {
+      break;
+    }
     if (!moveDown && !moveUp && !moveLeft && !moveRight)
     {
       break;
     }
     if(!spaceKeyIsDown)
     {
+      mana.swx = mana.swx - 25;
       lineShoot = true;
       spaceKeyIsDown = true;
 
@@ -76,12 +86,17 @@ window.addEventListener("keydown", function(event)
     break;
 
     case Z:
+    if (mana.swx < 100)
+    {
+      break;
+    }
     if (!moveDown && !moveUp && !moveLeft && !moveRight)
     {
       break;
     }
     if(!zIsDown)
     {
+      mana.swx = mana.swx - 100;
       lineShoot = true;
       zIsDown = true;
 
@@ -89,8 +104,13 @@ window.addEventListener("keydown", function(event)
     break;
 
     case X:
+    if (mana.swx < 100)
+    {
+      break;
+    }
     if (!xIsDown)
     {
+      mana.swx = mana.swx - 100;
       lineShoot = true;
       xIsDown = true;
     }
@@ -370,8 +390,13 @@ for(var i = 0; i < missiles.length; i++)
 }
 
 }
-
-
+function manaIncrease(){
+  if (mana.swx < 250)
+  {
+  mana.swx++;
+  }
+}
+setInterval(manaIncrease, 40);
 
 function update()
 {
@@ -391,6 +416,7 @@ switch(gameState)
   endGame();
   break;
 
+
 }
 
 function render()
@@ -402,6 +428,18 @@ function render()
     for (var i = 0; i < sprites.length; i++)
     {
       var sprite = sprites[i];
+
+
+      drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, sprite.x, sprite.y, sprite.swx, sprite.swy);
+    }
+
+  }
+
+  if(manaSprites.length !== 0)
+  {
+    for (var i = 0; i < manaSprites.length; i++)
+    {
+      var sprite = manaSprites[i];
 
 
       drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, sprite.x, sprite.y, sprite.swx, sprite.swy);
