@@ -2,11 +2,30 @@
 
 var canvas = document.querySelector("canvas");
 var drawingSurface = canvas.getContext("2d");
+var title = canvas.getContext("2d");
+var onePlayer = canvas.getContext("2d");
+var twoPlayer = canvas.getContext("2d");
+var instructions = canvas.getContext("2d");
+
+title.font = "50px Arial";
+title.textAlign = "center";
+
+
+
+
+
+// onePlayer.font = "bold 30px Arial";
+// onePlayer.textAlign = "center";
+// twoPlayer.font = "bold 100px Arial";
+// twoPlayer.textAlign = "center";
+// instructions.font = "bold 100px Arial";
+// instructions.textAlign = "center";
 
 var sprites = [];
 var missiles = [];
 var assetsToLoad = [];
 var manaSprites = [];
+var selectSprites = []
 
 
 
@@ -17,7 +36,12 @@ manaSprites.push(mbTop);
 manaSprites.push(mbBottom);
 manaSprites.push(mbLeft);
 manaSprites.push(mbRight);
-
+selectSprites.push(select1);
+selectSprites.push(select2);
+selectSprites.push(lineSelect);
+selectSprites.push(triangleSelect);
+selectSprites.push(squareSelect);
+selectSprites.push(circleSelect);
 
 var image = new Image();
 // image.addEventListener("load", loadHandler, false);
@@ -28,8 +52,9 @@ image.src = "tilesheet.jpg";
 // var LOADING = 0;
 var PLAYING = 1;
 var OVER = 2;
-var gameState = PLAYING;
-;
+var MODESELECT = 3;
+var gameState = MODESELECT;
+
 var RIGHT = 39;
 var LEFT = 37;
 var UP = 38;
@@ -47,110 +72,7 @@ var moveLeft = false;
 var moveUp = false;
 var moveDown = false;
 
-window.addEventListener("keydown", function(event)
-{
-  switch(event.keyCode){
-    case LEFT:
-    moveLeft = true;
-    break;
 
-    case RIGHT:
-    moveRight = true;
-    break;
-
-    case UP:
-    moveUp = true;
-    break;
-
-    case DOWN:
-    moveDown = true;
-    break;
-
-    case SPACE:
-    if (mana.swx < 25)
-    {
-      break;
-    }
-    if (!moveDown && !moveUp && !moveLeft && !moveRight)
-    {
-      break;
-    }
-    if(!spaceKeyIsDown)
-    {
-      mana.swx = mana.swx - 25;
-      lineShoot = true;
-      spaceKeyIsDown = true;
-
-    }
-
-    break;
-
-    case Z:
-    if (mana.swx < 100)
-    {
-      break;
-    }
-    if (!moveDown && !moveUp && !moveLeft && !moveRight)
-    {
-      break;
-    }
-    if(!zIsDown)
-    {
-      mana.swx = mana.swx - 100;
-      lineShoot = true;
-      zIsDown = true;
-
-    }
-    break;
-
-    case X:
-    if (mana.swx < 100)
-    {
-      break;
-    }
-    if (!xIsDown)
-    {
-      mana.swx = mana.swx - 100;
-      lineShoot = true;
-      xIsDown = true;
-    }
-
-  }
-}, false);
-
-window.addEventListener("keyup", function(event)
-{
-  switch(event.keyCode){
-    case LEFT:
-    moveLeft = false;
-    break;
-
-    case RIGHT:
-    moveRight = false;
-    break;
-
-    case UP:
-    moveUp = false;
-    break;
-
-    case DOWN:
-    moveDown = false;
-    break;
-
-    case SPACE:
-    spaceKeyIsDown = false;
-    break;
-
-    case Z:
-    zIsDown = false;
-    break;
-
-    case X:
-    xIsDown = false;
-    break;
-
-  }
-},false);
 
 function removeObject(objectToRemove, array){
   var i = array.indexOf(objectToRemove);
@@ -160,179 +82,15 @@ function removeObject(objectToRemove, array){
   }
 }
 
-function lineFire()
-{
-if (spaceKeyIsDown){
-  var missile = {
-    width: 12,
-    height:12,
-    sx: 100,
-    sy: 0,
-    swx: 12,
-    swy: 12,
-    vx:0,
-    vy:0,
-    x: 0,
-    y: 0,
-  }
 
-  if (moveLeft){
-    missile.x = line.x - 12;
-    missile.y = line.y +  19;
-    missile.vx = -14;
-  }
-  if (moveRight){
-    missile.x = line.x + 10;
-    missile.y = line.y +  19;
-      missile.vx = 14;
-  }
-  if (moveUp){
-    missile.x = line.x - 1;
-    missile.y = line.y - 12;
-    missile.vy = -14;
-  }
-  if (moveDown){
-    missile.x = line.x - 1;
-    missile.y = line.y + 50;
-  missile.vy = 14;
-}
-}
-// line sp attack
-
-if(zIsDown){
-  var missile = {
-    width: 0,
-    height:0,
-    sx: 0,
-    sy: 0,
-    swx: 0,
-    swy: 0,
-    vx:0,
-    vy:0,
-    x: 0,
-    y: 0,
-  }
-
-  if (moveLeft && !moveDown && !moveUp){
-    missile.x = canvas.width;
-    missile.y = line.y + 20;
-    missile.width = 50;
-    missile.height = 10;
-    missile.sx = 50;
-    missile.sy = 0;
-    missile.swx = 50;
-    missile.swy = 10;
-    missile.vx = -10;
-  }
-  if (moveRight  && !moveDown && !moveUp){
-    missile.x = -50;
-    missile.y = line.y + 20;
-    missile.width = 50;
-    missile.height = 10;
-    missile.sx = 50;
-    missile.sy = 0;
-    missile.swx = 50;
-    missile.swy = 10;
-    missile.vx = 10;
-  }
-  if (moveUp && !moveLeft && !moveRight){
-    missile.x = line.x;
-    missile.y = canvas.height;
-    missile.width = 10;
-    missile.height = 50;
-    missile.sx = 0;
-    missile.sy = 0;
-    missile.swx = 10;
-    missile.swy = 50;
-    missile.vy = -10;
-  }
-  if (moveDown && !moveLeft && !moveRight){
-    missile.x = line.x;
-    missile.y = -50;
-    missile.width = 10;
-    missile.height = 50;
-    missile.sx = 0;
-    missile.sy = 0;
-    missile.swx = 10;
-    missile.swy = 50;
-    missile.vy = 10;
-  }
-
-}
-if (spaceKeyIsDown || zIsDown)
-{
-  sprites.push(missile);
-  missiles.push(missile);
-}
-
-if(xIsDown){
-var missileUp = {
-  width: 10,
-  height: 50,
-  sx: 0,
-  sy: 0,
-  swx: 10,
-  swy: 50,
-  vx:0,
-  vy:-21,
-  x: line.x,
-  y: line.y,
-}
-
-var missileDown = {
-  width: 10,
-  height: 50,
-  sx: 0,
-  sy: 0,
-  swx: 10,
-  swy: 50,
-  vx:0,
-  vy:21,
-  x: line.x,
-  y: line.y,
-}
-
-var missileRight = {
-  width: 50,
-  height: 10,
-  sx: 50,
-  sy: 0,
-  swx: 50,
-  swy: 10,
-  vx:21,
-  vy:0,
-  x: line.x - 25,
-  y: line.y + 20,
-}
-
-var missileLeft = {
-  width: 50,
-  height: 10,
-  sx: 50,
-  sy: 0,
-  swx: 50,
-  swy: 10,
-  vx:-21,
-  vy:0,
-  x: line.x - 25,
-  y: line.y + 20,
-}
-
-sprites.push(missileUp);
-missiles.push(missileUp);
-sprites.push(missileDown);
-missiles.push(missileDown);
-sprites.push(missileLeft);
-missiles.push(missileLeft);
-sprites.push(missileRight);
-missiles.push(missileRight);
-
-}
-
-}
 
 function playGame()
 {
+
+  keyDown(event);
+
+  keyUp(event);
+
 //LEFT
 if(moveLeft && !moveRight)
 {
@@ -390,13 +148,9 @@ for(var i = 0; i < missiles.length; i++)
 }
 
 }
-function manaIncrease(){
-  if (mana.swx < 250)
-  {
-  mana.swx++;
-  }
-}
+
 setInterval(manaIncrease, 40);
+
 
 function update()
 {
@@ -412,40 +166,24 @@ switch(gameState)
   playGame();
   break;
 
-  case OVER:
+  case 2:
   endGame();
   break;
 
+  case 3:
+  selectGame();
+break;
 
 }
 
 function render()
 {
+
   drawingSurface.clearRect(0,0,canvas.width, canvas.height);
-
-  if(sprites.length !== 0)
-  {
-    for (var i = 0; i < sprites.length; i++)
-    {
-      var sprite = sprites[i];
+drawPlayGame();
+drawSelectGame();
 
 
-      drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, sprite.x, sprite.y, sprite.swx, sprite.swy);
-    }
-
-  }
-
-  if(manaSprites.length !== 0)
-  {
-    for (var i = 0; i < manaSprites.length; i++)
-    {
-      var sprite = manaSprites[i];
-
-
-      drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, sprite.x, sprite.y, sprite.swx, sprite.swy);
-    }
-
-  }
 }
 
   render();

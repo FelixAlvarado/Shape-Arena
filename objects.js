@@ -77,3 +77,85 @@ var mbRight = {
   x: 245,
   y: 0,
 }
+
+var select1 = {
+  width: 12,
+  height:12,
+  sx: 100,
+  sy: 0,
+  swx: 12,
+  swy: 12,
+  vx:0,
+  vy:0,
+  x: 350,
+  y: 275,
+}
+
+var select2 = {
+  width: 12,
+  height:12,
+  sx: 100,
+  sy: 0,
+  swx: 12,
+  swy: 12,
+  vx:0,
+  vy:0,
+  x: 440,
+  y: 275,
+}
+
+var lineSelect =
+{
+width: 10,
+height: 50,
+sx: 0,
+sy: 0,
+swx: 10,
+swy: 50,
+vx:0,
+vy:0,
+x: 150,
+y: 200,
+}
+
+var triangleSelect =
+{
+width: 50,
+height: 50,
+sx: 150,
+sy: 0,
+swx: 49,
+swy: 50,
+vx:0,
+vy:0,
+x: 650,
+y: 250,
+}
+
+var squareSelect =
+{
+width: 50,
+height: 50,
+sx: 200,
+sy: 0,
+swx: 50,
+swy: 50,
+vx:0,
+vy:0,
+x: 200,
+y: 400,
+}
+
+var circleSelect =
+{
+width: 50,
+height: 50,
+sx: 0,
+sy: 50,
+swx: 49,
+swy: 49,
+vx:0,
+vy:0,
+x: 550,
+y: 450,
+}
