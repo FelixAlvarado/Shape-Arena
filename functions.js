@@ -48,7 +48,7 @@ function selectGame()
 
       case SPACE:
       if (select1.y == 275){
-  gameState = PLAYING;
+      gameState = CHARACTERSELECT;
 }
       break;
 

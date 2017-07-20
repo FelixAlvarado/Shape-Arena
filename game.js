@@ -26,7 +26,7 @@ var missiles = [];
 var assetsToLoad = [];
 var manaSprites = [];
 var selectSprites = []
-
+var cSelectSprites = [];
 
 
 
@@ -42,6 +42,7 @@ selectSprites.push(lineSelect);
 selectSprites.push(triangleSelect);
 selectSprites.push(squareSelect);
 selectSprites.push(circleSelect);
+cSelectSprites.push(selectScreen);
 
 var image = new Image();
 // image.addEventListener("load", loadHandler, false);
@@ -53,7 +54,8 @@ image.src = "tilesheet.jpg";
 var PLAYING = 1;
 var OVER = 2;
 var MODESELECT = 3;
-var gameState = MODESELECT;
+var CHARACTERSELECT = 4;
+var gameState = CHARACTERSELECT;
 
 var RIGHT = 39;
 var LEFT = 37;
@@ -172,7 +174,10 @@ switch(gameState)
 
   case 3:
   selectGame();
-break;
+  break;
+
+case 4:
+  break;
 
 }
 
@@ -182,7 +187,17 @@ function render()
   drawingSurface.clearRect(0,0,canvas.width, canvas.height);
 drawPlayGame();
 drawSelectGame();
+if(cSelectSprites.length !== 0)
+{
+  for (var i = 0; i < cSelectSprites.length; i++)
+  {
+    var sprite = cSelectSprites[i];
 
+
+    drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, sprite.x, sprite.y, sprite.swx, sprite.swy);
+  }
+
+}
 
 }
 

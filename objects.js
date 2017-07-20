@@ -159,3 +159,17 @@ vy:0,
 x: 550,
 y: 450,
 }
+
+var selectScreen =
+{
+width: 225,
+height: 60,
+sx: 250,
+sy: 0,
+swx: 225,
+swy: 60,
+vx:0,
+vy:0,
+x: 250,
+y: 250,
+}
