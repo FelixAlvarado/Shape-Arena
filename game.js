@@ -43,6 +43,10 @@ selectSprites.push(triangleSelect);
 selectSprites.push(squareSelect);
 selectSprites.push(circleSelect);
 cSelectSprites.push(selectScreen);
+cSelectSprites.push(yellowLeft);
+cSelectSprites.push(yellowRight);
+cSelectSprites.push(yellowTop);
+cSelectSprites.push(yellowBottom);
 
 var image = new Image();
 // image.addEventListener("load", loadHandler, false);
@@ -55,7 +59,7 @@ var PLAYING = 1;
 var OVER = 2;
 var MODESELECT = 3;
 var CHARACTERSELECT = 4;
-var gameState = CHARACTERSELECT;
+var gameState = MODESELECT;
 
 var RIGHT = 39;
 var LEFT = 37;
@@ -177,6 +181,7 @@ switch(gameState)
   break;
 
 case 4:
+characterSelect();
   break;
 
 }
@@ -187,17 +192,8 @@ function render()
   drawingSurface.clearRect(0,0,canvas.width, canvas.height);
 drawPlayGame();
 drawSelectGame();
-if(cSelectSprites.length !== 0)
-{
-  for (var i = 0; i < cSelectSprites.length; i++)
-  {
-    var sprite = cSelectSprites[i];
+drawCharacterSelect();
 
-
-    drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, sprite.x, sprite.y, sprite.swx, sprite.swy);
-  }
-
-}
 
 }
 

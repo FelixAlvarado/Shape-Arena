@@ -1,3 +1,92 @@
+//function for drawing character select
+
+function drawCharacterSelect (){
+if (gameState == CHARACTERSELECT){
+  if(cSelectSprites.length !== 0)
+  {
+    for (var i = 0; i < cSelectSprites.length; i++)
+    {
+      var sprite = cSelectSprites[i];
+
+
+      drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, sprite.x, sprite.y, sprite.swx, sprite.swy);
+    }
+
+  }
+}
+
+}
+
+// Fuction for slecting a characterSelect
+
+function characterSelect()
+{
+  var Y1 = yellowLeft.x;
+  window.addEventListener("keydown", function(event)
+  {
+    switch(event.keyCode){
+
+      case LEFT:
+      if (yellowLeft.x > 292.5){
+
+        if (Y1 == yellowLeft.x){
+        yellowLeft.x = yellowLeft.x - 55;
+        yellowRight.x = yellowRight.x - 55;
+        yellowTop.x = yellowTop.x - 55;
+        yellowBottom.x = yellowBottom.x - 55;
+      }
+        }
+
+      break;
+
+      case RIGHT:
+      if (yellowLeft.x < 457.5){
+
+        if (Y1 == yellowLeft.x){
+        yellowLeft.x = yellowLeft.x + 55;
+        yellowRight.x = yellowRight.x + 55;
+        yellowTop.x = yellowTop.x + 55;
+        yellowBottom.x = yellowBottom.x + 55;
+      }
+      }
+      break;
+
+      case SPACE:
+      if (yellowLeft.x == 292.5){
+      gameState = PLAYING;
+}
+      break;
+
+
+
+    }
+  }, false);
+
+  window.addEventListener("keyup", function(event)
+  {
+    switch(event.keyCode){
+
+      case LEFT:
+      Y1 = yellowLeft.x;
+
+      break;
+
+      case RIGHT:
+      Y1 = yellowLeft.x;
+      break;
+
+      case SPACE:
+      break;
+
+
+
+    }
+  }, false);
+
+}
+
+
+
 
 //draws the select screen for the game
 

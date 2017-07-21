@@ -170,6 +170,62 @@ swx: 225,
 swy: 60,
 vx:0,
 vy:0,
-x: 250,
-y: 250,
+x: 287.5,
+y: 475,
+}
+
+var yellowLeft =
+{
+  width: 5,
+  height: 50,
+  sx: 50,
+  sy: 50,
+  swx: 5,
+  swy: 50,
+  vx:0,
+  vy:0,
+  x: 292.5,
+  y: 480,
+}
+
+var yellowRight =
+{
+  width: 5,
+  height: 50,
+  sx: 50,
+  sy: 50,
+  swx: 5,
+  swy: 50,
+  vx:0,
+  vy:0,
+  x: 337.5,
+  y: 480,
+}
+
+var yellowTop =
+{
+  width: 50,
+  height: 5,
+  sx: 100,
+  sy: 50,
+  swx: 50,
+  swy: 5,
+  vx:0,
+  vy:0,
+  x: 292.5,
+  y: 480,
+}
+
+var yellowBottom =
+{
+  width: 50,
+  height: 5,
+  sx: 100,
+  sy: 50,
+  swx: 50,
+  swy: 5,
+  vx:0,
+  vy:0,
+  x: 292.5,
+  y: 525,
 }
