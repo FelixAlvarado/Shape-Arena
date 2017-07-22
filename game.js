@@ -43,10 +43,10 @@ selectSprites.push(triangleSelect);
 selectSprites.push(squareSelect);
 selectSprites.push(circleSelect);
 cSelectSprites.push(selectScreen);
-cSelectSprites.push(yellowLeft);
 cSelectSprites.push(yellowRight);
-cSelectSprites.push(yellowTop);
 cSelectSprites.push(yellowBottom);
+cSelectSprites.push(yellowLeft);
+cSelectSprites.push(yellowTop);
 cSelectSprites.push(cSelectLine);
 
 var image = new Image();
@@ -62,13 +62,22 @@ var MODESELECT = 3;
 var CHARACTERSELECT = 4;
 var gameState = MODESELECT;
 
-var RIGHT = 39;
-var LEFT = 37;
-var UP = 38;
-var DOWN = 40;
-var SPACE = 32;
-var Z = 90;
-var X = 88;
+var RIGHT = 68; // d **down and right buttons only work at same time when its arrow keys (try and look up later) could also be just my conputer
+var LEFT = 65; // a
+var UP = 87; //w
+var DOWN = 83; //s
+var SPACE = 67; //c like a x on ps congtroller
+var Z = 86; //v like a circle on ps controller
+var X = 66; //b like a square on ps controller
+
+//player 2 controllers
+var RIGHT2 = 76; // l
+var LEFT2 = 74; // j
+var UP2 = 73; //i
+var DOWN2 = 75; //k
+var SPACE2 = 190; //. like a x on ps congtroller
+var Z2 = 191; //    / like a circle on ps controller
+var X2 = 16; //  shift like a square on ps controller
 
 var lineShoot = false;
 var spaceKeyIsDown = false;
@@ -78,7 +87,7 @@ var moveRight = false;
 var moveLeft = false;
 var moveUp = false;
 var moveDown = false;
-
+var player2 = false;
 
 
 function removeObject(objectToRemove, array){
@@ -170,7 +179,6 @@ switch(gameState)
   // break;
 
   case PLAYING:
-  console.log(gameState);
   playGame();
   break;
 
@@ -184,7 +192,6 @@ switch(gameState)
   break;
 
 case CHARACTERSELECT:
-console.log(gameState);
 characterSelect();
   break;
 

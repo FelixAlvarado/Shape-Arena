@@ -285,3 +285,59 @@ var cSelectCircle =
   x: 375,
   y: 250,
 }
+
+var redLeft =
+{
+  width: 5,
+  height: 50,
+  sx: 150,
+  sy: 50,
+  swx: 5,
+  swy: 50,
+  vx:0,
+  vy:0,
+  x: 457.5,
+  y: 480,
+}
+
+var redRight =
+{
+  width: 5,
+  height: 50,
+  sx: 150,
+  sy: 50,
+  swx: 5,
+  swy: 50,
+  vx:0,
+  vy:0,
+  x: 502.5,
+  y: 480,
+}
+
+var redTop =
+{
+  width: 50,
+  height: 5,
+  sx: 200,
+  sy: 50,
+  swx: 50,
+  swy: 5,
+  vx:0,
+  vy:0,
+  x: 457.5,
+  y: 480,
+}
+
+var redBottom =
+{
+  width: 50,
+  height: 5,
+  sx: 200,
+  sy: 50,
+  swx: 50,
+  swy: 5,
+  vx:0,
+  vy:0,
+  x: 457.5,
+  y: 525,
+}

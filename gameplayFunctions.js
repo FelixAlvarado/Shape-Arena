@@ -1,252 +1,3 @@
-//function for drawing character select
-
-function drawCharacterSelect (){
-if (gameState == CHARACTERSELECT){
-
-
-title.font = "40pt Arial";
-
-  title.fillText("Select your Shape!", 400, 100);
-
-  if (yellowLeft.x < 293){
-    // var item = cSelectLine;
-
-  title.font = "25pt Arial";
-  title.fillText("Mr. Line", 400, 225);
-  title.font = "15pt Arial";
-  title.fillText("Skill 1: Shot Fire", 400, 345);
-  title.fillText("Skill 2: Wall Fire", 400, 365);
-  title.fillText("Skill 3: Four Way Fire", 400, 385);
-}
-
-if (yellowLeft.x < 348 &&  yellowLeft.x > 347){
-  // var item = cSelectLine;
-title.font = "25pt Arial";
-title.fillText("Senorita Triangle", 400, 225);
-title.font = "15pt Arial";
-title.fillText("Skill 1: Three Way Fire", 400, 345);
-title.fillText("Skill 2: Teleport", 400, 365);
-title.fillText("Skill 3: Sneak", 400, 385);
-}
-
-if (yellowLeft.x < 403 &&  yellowLeft.x > 402){
-  // var item = cSelectLine;
-title.font = "25pt Arial";
-title.fillText("Dr. Square", 400, 225);
-title.font = "15pt Arial";
-title.fillText("Skill 1: Super Spin", 400, 345);
-title.fillText("Skill 2: Speed Swipe", 400, 365);
-title.fillText("Skill 3: Reflect", 400, 385);
-}
-
-if (yellowLeft.x < 458 &&  yellowLeft.x > 457){
-  // var item = cSelectLine;
-title.font = "25pt Arial";
-title.fillText("The Circle", 400, 225);
-title.font = "15pt Arial";
-title.fillText("Skill 1: Quick Shot", 400, 345);
-title.fillText("Skill 2: Seeking Clone", 400, 365);
-title.fillText("Skill 3: Barrier", 400, 385);
-}
-
-  if(cSelectSprites.length !== 0)
-  {
-    for (var i = 0; i < cSelectSprites.length; i++)
-    {
-      var sprite = cSelectSprites[i];
-
-
-      drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, sprite.x, sprite.y, sprite.swx, sprite.swy);
-    }
-
-  }
-}
-
-}
-
-// Fuction for slecting a characterSelect
-
-function characterSelect()
-{
-  var Y1 = yellowLeft.x;
-  window.addEventListener("keydown", function(event)
-  {
-    switch(event.keyCode){
-
-      case LEFT:
-      if (yellowLeft.x > 292.5){
-
-        if (Y1 == yellowLeft.x){
-
-          if(yellowLeft.x < 348 && yellowLeft.x > 347){
-          removeObject(cSelectTriangle, cSelectSprites);
-          cSelectSprites.push(cSelectLine);
-          }
-
-          if(yellowLeft.x < 403 && yellowLeft.x > 402){
-          removeObject(cSelectSquare, cSelectSprites);
-          cSelectSprites.push(cSelectTriangle);
-          }
-
-          if(yellowLeft.x > 457){
-          removeObject(cSelectCircle, cSelectSprites);
-          cSelectSprites.push(cSelectSquare);
-          }
-
-        yellowLeft.x = yellowLeft.x - 55;
-        yellowRight.x = yellowRight.x - 55;
-        yellowTop.x = yellowTop.x - 55;
-        yellowBottom.x = yellowBottom.x - 55;
-      }
-        }
-
-      break;
-
-      case RIGHT:
-      if (yellowLeft.x < 457.5){
-
-        if (Y1 == yellowLeft.x){
-
-          if(yellowLeft.x < 293){
-          removeObject(cSelectLine, cSelectSprites);
-          cSelectSprites.push(cSelectTriangle);
-          }
-
-          if(yellowLeft.x < 348 && yellowLeft.x > 347){
-          removeObject(cSelectTriangle, cSelectSprites);
-          cSelectSprites.push(cSelectSquare);
-          }
-
-          if(yellowLeft.x < 403 && yellowLeft.x > 402){
-          removeObject(cSelectSquare, cSelectSprites);
-          cSelectSprites.push(cSelectCircle);
-          }
-
-        yellowLeft.x = yellowLeft.x + 55;
-        yellowRight.x = yellowRight.x + 55;
-        yellowTop.x = yellowTop.x + 55;
-        yellowBottom.x = yellowBottom.x + 55;
-
-
-      }
-      }
-      break;
-
-      case SPACE:
-      if (yellowLeft.x == 292.5){
-      gameState = PLAYING;
-}
-      break;
-
-
-
-    }
-  }, false);
-
-  window.addEventListener("keyup", function(event)
-  {
-    switch(event.keyCode){
-
-      case LEFT:
-      Y1 = yellowLeft.x;
-
-      break;
-
-      case RIGHT:
-      Y1 = yellowLeft.x;
-      break;
-
-      case SPACE:
-      break;
-
-
-
-    }
-  }, false);
-
-}
-
-
-
-
-//draws the select screen for the game
-
-function drawSelectGame(){
-if (gameState == MODESELECT)
-{
-  title.fillText("Shape Arena!!!", 400, 100);
-    title.fillText("1P", 400, 300);
-    title.fillText("2P", 400, 375);
-
-    if(selectSprites.length !== 0)
-    {
-      for (var i = 0; i < selectSprites.length; i++)
-      {
-        var sprite = selectSprites[i];
-
-
-        drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, sprite.x, sprite.y, sprite.swx, sprite.swy);
-      }
-
-    }
-  }
-}
-
-
-// select game function
-
-function selectGame()
-{
-  window.addEventListener("keydown", function(event)
-  {
-    switch(event.keyCode){
-
-      case UP:
-      if (select1.y == 350){
-        select1.y = select1.y - 75;
-        select2.y = select2.y - 75;
-      }
-
-      break;
-
-      case DOWN:
-      if (select1.y == 275){
-        select1.y = select1.y + 75;
-        select2.y = select2.y + 75;
-      }
-      break;
-
-      case SPACE:
-      if (select1.y == 275){
-      gameState = CHARACTERSELECT;
-}
-      break;
-
-
-
-    }
-  }, false);
-
-  window.addEventListener("keyup", function(event)
-  {
-    switch(event.keyCode){
-
-      case UP:
-      break;
-
-      case DOWN:
-      break;
-
-      case SPACE:
-      select1.y = 270;
-      break;
-
-
-
-    }
-  }, false);
-
-}
 
 
 
@@ -291,10 +42,12 @@ function keyDown(){
       }
       if (!moveDown && !moveUp && !moveLeft && !moveRight)
       {
+        console.log('first');
         break;
       }
       if(!spaceKeyIsDown)
       {
+        console.log('second');
         mana.swx = mana.swx - 25;
         lineShoot = true;
         spaceKeyIsDown = true;
@@ -314,7 +67,6 @@ function keyDown(){
       }
       if(!zIsDown)
       {
-        mana.swx = mana.swx - 75;
         lineShoot = true;
         zIsDown = true;
 
@@ -466,6 +218,7 @@ function drawPlayGame()
    }
 
    if (moveLeft && !moveDown && !moveUp){
+     mana.swx = mana.swx - 75;
      missile.x = canvas.width;
      missile.y = line.y + 20;
      missile.width = 50;
@@ -477,6 +230,7 @@ function drawPlayGame()
      missile.vx = -10;
    }
    if (moveRight  && !moveDown && !moveUp){
+     mana.swx = mana.swx - 75;
      missile.x = -50;
      missile.y = line.y + 20;
      missile.width = 50;
@@ -488,6 +242,7 @@ function drawPlayGame()
      missile.vx = 10;
    }
    if (moveUp && !moveLeft && !moveRight){
+     mana.swx = mana.swx - 75;
      missile.x = line.x;
      missile.y = canvas.height;
      missile.width = 10;
@@ -499,6 +254,7 @@ function drawPlayGame()
      missile.vy = -10;
    }
    if (moveDown && !moveLeft && !moveRight){
+     mana.swx = mana.swx - 75;
      missile.x = line.x;
      missile.y = -50;
      missile.width = 10;
