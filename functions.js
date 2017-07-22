@@ -2,6 +2,53 @@
 
 function drawCharacterSelect (){
 if (gameState == CHARACTERSELECT){
+
+
+title.font = "40pt Arial";
+
+  title.fillText("Select your Shape!", 400, 100);
+
+  if (yellowLeft.x < 293){
+    // var item = cSelectLine;
+
+  title.font = "25pt Arial";
+  title.fillText("Mr. Line", 400, 225);
+  title.font = "15pt Arial";
+  title.fillText("Skill 1: Shot Fire", 400, 345);
+  title.fillText("Skill 2: Wall Fire", 400, 365);
+  title.fillText("Skill 3: Four Way Fire", 400, 385);
+}
+
+if (yellowLeft.x < 348 &&  yellowLeft.x > 347){
+  // var item = cSelectLine;
+title.font = "25pt Arial";
+title.fillText("Senorita Triangle", 400, 225);
+title.font = "15pt Arial";
+title.fillText("Skill 1: Three Way Fire", 400, 345);
+title.fillText("Skill 2: Teleport", 400, 365);
+title.fillText("Skill 3: Sneak", 400, 385);
+}
+
+if (yellowLeft.x < 403 &&  yellowLeft.x > 402){
+  // var item = cSelectLine;
+title.font = "25pt Arial";
+title.fillText("Dr. Square", 400, 225);
+title.font = "15pt Arial";
+title.fillText("Skill 1: Super Spin", 400, 345);
+title.fillText("Skill 2: Speed Swipe", 400, 365);
+title.fillText("Skill 3: Reflect", 400, 385);
+}
+
+if (yellowLeft.x < 458 &&  yellowLeft.x > 457){
+  // var item = cSelectLine;
+title.font = "25pt Arial";
+title.fillText("The Circle", 400, 225);
+title.font = "15pt Arial";
+title.fillText("Skill 1: Quick Shot", 400, 345);
+title.fillText("Skill 2: Seeking Clone", 400, 365);
+title.fillText("Skill 3: Barrier", 400, 385);
+}
+
   if(cSelectSprites.length !== 0)
   {
     for (var i = 0; i < cSelectSprites.length; i++)
@@ -30,6 +77,22 @@ function characterSelect()
       if (yellowLeft.x > 292.5){
 
         if (Y1 == yellowLeft.x){
+
+          if(yellowLeft.x < 348 && yellowLeft.x > 347){
+          removeObject(cSelectTriangle, cSelectSprites);
+          cSelectSprites.push(cSelectLine);
+          }
+
+          if(yellowLeft.x < 403 && yellowLeft.x > 402){
+          removeObject(cSelectSquare, cSelectSprites);
+          cSelectSprites.push(cSelectTriangle);
+          }
+
+          if(yellowLeft.x > 457){
+          removeObject(cSelectCircle, cSelectSprites);
+          cSelectSprites.push(cSelectSquare);
+          }
+
         yellowLeft.x = yellowLeft.x - 55;
         yellowRight.x = yellowRight.x - 55;
         yellowTop.x = yellowTop.x - 55;
@@ -43,10 +106,28 @@ function characterSelect()
       if (yellowLeft.x < 457.5){
 
         if (Y1 == yellowLeft.x){
+
+          if(yellowLeft.x < 293){
+          removeObject(cSelectLine, cSelectSprites);
+          cSelectSprites.push(cSelectTriangle);
+          }
+
+          if(yellowLeft.x < 348 && yellowLeft.x > 347){
+          removeObject(cSelectTriangle, cSelectSprites);
+          cSelectSprites.push(cSelectSquare);
+          }
+
+          if(yellowLeft.x < 403 && yellowLeft.x > 402){
+          removeObject(cSelectSquare, cSelectSprites);
+          cSelectSprites.push(cSelectCircle);
+          }
+
         yellowLeft.x = yellowLeft.x + 55;
         yellowRight.x = yellowRight.x + 55;
         yellowTop.x = yellowTop.x + 55;
         yellowBottom.x = yellowBottom.x + 55;
+
+
       }
       }
       break;
@@ -146,7 +227,24 @@ function selectGame()
     }
   }, false);
 
+  window.addEventListener("keyup", function(event)
+  {
+    switch(event.keyCode){
 
+      case UP:
+      break;
+
+      case DOWN:
+      break;
+
+      case SPACE:
+      select1.y = 270;
+      break;
+
+
+
+    }
+  }, false);
 
 }
 
@@ -206,7 +304,7 @@ function keyDown(){
       break;
 
       case Z:
-      if (mana.swx < 100)
+      if (mana.swx < 75)
       {
         break;
       }
@@ -216,7 +314,7 @@ function keyDown(){
       }
       if(!zIsDown)
       {
-        mana.swx = mana.swx - 100;
+        mana.swx = mana.swx - 75;
         lineShoot = true;
         zIsDown = true;
 
@@ -224,13 +322,13 @@ function keyDown(){
       break;
 
       case X:
-      if (mana.swx < 100)
+      if (mana.swx < 75)
       {
         break;
       }
       if (!xIsDown)
       {
-        mana.swx = mana.swx - 100;
+        mana.swx = mana.swx - 75;
         lineShoot = true;
         xIsDown = true;
       }

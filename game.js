@@ -7,7 +7,7 @@ var onePlayer = canvas.getContext("2d");
 var twoPlayer = canvas.getContext("2d");
 var instructions = canvas.getContext("2d");
 
-title.font = "50px Arial";
+title.font = "40pt Arial";
 title.textAlign = "center";
 
 
@@ -47,6 +47,7 @@ cSelectSprites.push(yellowLeft);
 cSelectSprites.push(yellowRight);
 cSelectSprites.push(yellowTop);
 cSelectSprites.push(yellowBottom);
+cSelectSprites.push(cSelectLine);
 
 var image = new Image();
 // image.addEventListener("load", loadHandler, false);
@@ -168,19 +169,22 @@ switch(gameState)
   // console.log("loading...");
   // break;
 
-  case 1:
+  case PLAYING:
+  console.log(gameState);
   playGame();
   break;
 
-  case 2:
+  case OVER:
+
   endGame();
   break;
 
-  case 3:
+  case MODESELECT:
   selectGame();
   break;
 
-case 4:
+case CHARACTERSELECT:
+console.log(gameState);
 characterSelect();
   break;
 

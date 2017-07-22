@@ -229,3 +229,59 @@ var yellowBottom =
   x: 292.5,
   y: 525,
 }
+
+var cSelectLine =
+{
+width: 10,
+height: 50,
+sx: 0,
+sy: 0,
+swx: 10,
+swy: 50,
+vx:0,
+vy:0,
+x: 395,
+y: 250,
+}
+
+var cSelectTriangle =
+{
+  width: 50,
+  height: 50,
+  sx: 150,
+  sy: 0,
+  swx: 48,
+  swy: 50,
+  vx:0,
+  vy:0,
+  x: 375,
+  y: 250,
+}
+
+var cSelectSquare =
+{
+  width: 50,
+  height: 50,
+  sx: 200,
+  sy: 0,
+  swx: 50,
+  swy: 50,
+  vx:0,
+  vy:0,
+  x: 375,
+  y: 250,
+}
+
+var cSelectCircle =
+{
+  width: 50,
+  height: 50,
+  sx: 0,
+  sy: 50,
+  swx: 49,
+  swy: 49,
+  vx:0,
+  vy:0,
+  x: 375,
+  y: 250,
+}
