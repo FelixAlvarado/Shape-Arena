@@ -8,8 +8,22 @@ swx: 10,
 swy: 50,
 vx:0,
 vy:0,
-x: 0,
-y: 100,
+x: 100,
+y: 250,
+}
+
+var line2 =
+{
+width: 10,
+height: 50,
+sx: 0,
+sy: 0,
+swx: 10,
+swy: 50,
+vx:0,
+vy:0,
+x: 700,
+y: 250,
 }
 
 var mana =
@@ -240,7 +254,21 @@ swx: 10,
 swy: 50,
 vx:0,
 vy:0,
-x: 395,
+x: 195,
+y: 250,
+}
+
+var cSelectLine2 =
+{
+width: 10,
+height: 50,
+sx: 0,
+sy: 0,
+swx: 10,
+swy: 50,
+vx:0,
+vy:0,
+x: 595,
 y: 250,
 }
 
@@ -254,9 +282,24 @@ var cSelectTriangle =
   swy: 50,
   vx:0,
   vy:0,
-  x: 375,
+  x: 175,
   y: 250,
 }
+
+var cSelectTriangle2 =
+{
+  width: 50,
+  height: 50,
+  sx: 150,
+  sy: 0,
+  swx: 48,
+  swy: 50,
+  vx:0,
+  vy:0,
+  x: 575,
+  y: 250,
+}
+
 
 var cSelectSquare =
 {
@@ -268,7 +311,21 @@ var cSelectSquare =
   swy: 50,
   vx:0,
   vy:0,
-  x: 375,
+  x: 175,
+  y: 250,
+}
+
+var cSelectSquare2 =
+{
+  width: 50,
+  height: 50,
+  sx: 200,
+  sy: 0,
+  swx: 50,
+  swy: 50,
+  vx:0,
+  vy:0,
+  x: 575,
   y: 250,
 }
 
@@ -282,7 +339,21 @@ var cSelectCircle =
   swy: 49,
   vx:0,
   vy:0,
-  x: 375,
+  x: 175,
+  y: 250,
+}
+
+var cSelectCircle2 =
+{
+  width: 50,
+  height: 50,
+  sx: 0,
+  sy: 50,
+  swx: 49,
+  swy: 49,
+  vx:0,
+  vy:0,
+  x: 575,
   y: 250,
 }
 
@@ -296,7 +367,7 @@ var redLeft =
   swy: 50,
   vx:0,
   vy:0,
-  x: 457.5,
+  x: -100,
   y: 480,
 }
 
@@ -310,7 +381,7 @@ var redRight =
   swy: 50,
   vx:0,
   vy:0,
-  x: 502.5,
+  x: -100,
   y: 480,
 }
 
@@ -324,7 +395,7 @@ var redTop =
   swy: 5,
   vx:0,
   vy:0,
-  x: 457.5,
+  x: -100,
   y: 480,
 }
 
@@ -338,6 +409,62 @@ var redBottom =
   swy: 5,
   vx:0,
   vy:0,
-  x: 457.5,
+  x: -100,
   y: 525,
+}
+
+var cBorder1 =
+{
+  width: 5,
+  height: 60,
+  sx: 250,
+  sy: 0,
+  swx: 5,
+  swy: 60,
+  vx:0,
+  vy:0,
+  x: 397.5,
+  y: 180,
+}
+
+var cBorder2 =
+{
+  width: 5,
+  height: 60,
+  sx: 250,
+  sy: 0,
+  swx: 5,
+  swy: 60,
+  vx:0,
+  vy:0,
+  x: 397.5,
+  y: 239,
+}
+
+var cBorder3 =
+{
+  width: 5,
+  height: 60,
+  sx: 250,
+  sy: 0,
+  swx: 5,
+  swy: 60,
+  vx:0,
+  vy:0,
+  x: 397.5,
+  y: 298,
+}
+
+var cBorder4 =
+{
+  width: 5,
+  height: 60,
+  sx: 250,
+  sy: 0,
+  swx: 5,
+  swy: 60,
+  vx:0,
+  vy:0,
+  x: 397.5,
+  y: 357,
 }

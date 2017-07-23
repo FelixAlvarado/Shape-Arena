@@ -55,10 +55,15 @@ function selectGame()
 }
       if (select1.y == 350){
         player2 = true;
-        cSelectSprites.splice(3, 0, redLeft);
-        cSelectSprites.splice(5, 0, redRight);
-        cSelectSprites.splice(6, 0, redTop);
-        cSelectSprites.splice(8, 0, redBottom);
+        // cSelectSprites.splice(3, 0, redLeft);
+        // cSelectSprites.splice(5, 0, redRight);
+        // cSelectSprites.splice(6, 0, redTop);
+        // cSelectSprites.splice(8, 0, redBottom);
+        redLeft.x = 457.499;
+        redBottom.x = 457.5;
+        redTop.x = 457.5;
+        redRight.x = 502.5;
+        cSelectSprites.push(cSelectCircle2);
       }
       select1.y = 275;
       select2.y = 275;

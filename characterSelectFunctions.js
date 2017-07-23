@@ -12,41 +12,86 @@ title.font = "40pt Arial";
     // var item = cSelectLine;
 
   title.font = "25pt Arial";
-  title.fillText("Mr. Line", 400, 225);
+  title.fillText("Mr. Line", 200, 225);
   title.font = "15pt Arial";
-  title.fillText("Skill 1: Shot Fire", 400, 345);
-  title.fillText("Skill 2: Wall Fire", 400, 365);
-  title.fillText("Skill 3: Four Way Fire", 400, 385);
+  title.fillText("Skill 1: Shot Fire", 200, 345);
+  title.fillText("Skill 2: Wall Fire", 200, 365);
+  title.fillText("Skill 3: Four Way Fire", 200, 385);
 }
 
 if (yellowLeft.x < 348 &&  yellowLeft.x > 347){
   // var item = cSelectLine;
 title.font = "25pt Arial";
-title.fillText("Senorita Triangle", 400, 225);
+title.fillText("Senorita Triangle", 200, 225);
 title.font = "15pt Arial";
-title.fillText("Skill 1: Three Way Fire", 400, 345);
-title.fillText("Skill 2: Teleport", 400, 365);
-title.fillText("Skill 3: Sneak", 400, 385);
+title.fillText("Skill 1: Three Way Fire", 200, 345);
+title.fillText("Skill 2: Teleport", 200, 365);
+title.fillText("Skill 3: Sneak", 200, 385);
 }
 
 if (yellowLeft.x < 403 &&  yellowLeft.x > 402){
   // var item = cSelectLine;
 title.font = "25pt Arial";
-title.fillText("Dr. Square", 400, 225);
+title.fillText("Dr. Square", 200, 225);
 title.font = "15pt Arial";
-title.fillText("Skill 1: Super Spin", 400, 345);
-title.fillText("Skill 2: Speed Swipe", 400, 365);
-title.fillText("Skill 3: Reflect", 400, 385);
+title.fillText("Skill 1: Super Spin", 200, 345);
+title.fillText("Skill 2: Speed Swipe", 200, 365);
+title.fillText("Skill 3: Reflect", 200, 385);
 }
 
 if (yellowLeft.x < 458 &&  yellowLeft.x > 457){
   // var item = cSelectLine;
 title.font = "25pt Arial";
-title.fillText("The Circle", 400, 225);
+title.fillText("The Circle", 200, 225);
 title.font = "15pt Arial";
-title.fillText("Skill 1: Quick Shot", 400, 345);
-title.fillText("Skill 2: Seeking Clone", 400, 365);
-title.fillText("Skill 3: Barrier", 400, 385);
+title.fillText("Skill 1: Quick Shot", 200, 345);
+title.fillText("Skill 2: Seeking Clone", 200, 365);
+title.fillText("Skill 3: Barrier", 200, 385);
+}
+
+if (player2){
+
+    if (redLeft.x < 293){
+      // var item = cSelectLine;
+
+    title.font = "25pt Arial";
+    title.fillText("Mr. Line", 600, 225);
+    title.font = "15pt Arial";
+    title.fillText("Skill 1: Shot Fire", 600, 345);
+    title.fillText("Skill 2: Wall Fire", 600, 365);
+    title.fillText("Skill 3: Four Way Fire", 600, 385);
+  }
+
+  if (redLeft.x < 348 &&  redLeft.x > 347){
+    // var item = cSelectLine;
+  title.font = "25pt Arial";
+  title.fillText("Senorita Triangle", 600, 225);
+  title.font = "15pt Arial";
+  title.fillText("Skill 1: Three Way Fire", 600, 345);
+  title.fillText("Skill 2: Teleport", 600, 365);
+  title.fillText("Skill 3: Sneak", 600, 385);
+  }
+
+  if (redLeft.x < 403 &&  redLeft.x > 402){
+    // var item = cSelectLine;
+  title.font = "25pt Arial";
+  title.fillText("Dr. Square", 600, 225);
+  title.font = "15pt Arial";
+  title.fillText("Skill 1: Super Spin", 600, 345);
+  title.fillText("Skill 2: Speed Swipe", 600, 365);
+  title.fillText("Skill 3: Reflect", 600, 385);
+  }
+
+  if (redLeft.x < 458 &&  redLeft.x > 457){
+    // var item = cSelectLine;
+  title.font = "25pt Arial";
+  title.fillText("The Circle", 600, 225);
+  title.font = "15pt Arial";
+  title.fillText("Skill 1: Quick Shot", 600, 345);
+  title.fillText("Skill 2: Seeking Clone", 600, 365);
+  title.fillText("Skill 3: Barrier", 600, 385);
+  }
+
 }
 
   if(cSelectSprites.length !== 0)
@@ -137,7 +182,17 @@ function characterSelect()
 
       case SPACE:
       if (gameState == CHARACTERSELECT){
-      if (yellowLeft.x == 292.5){
+      if (yellowLeft.x > 292.1 && yellowLeft.x < 292.99){
+      P1 = line;
+    yellowRemove();
+    }
+
+    if (player2){
+     if (P2 != null){
+    gameState = PLAYING;
+  }
+}
+    if (!player2){
       gameState = PLAYING;
     }
 }
@@ -148,7 +203,22 @@ function characterSelect()
 
       if (player2){
         player2 = false;
-        removeObject(8, cSelectSprites);
+        // removeObject(8, cSelectSprites);
+        if(redLeft.x < 293){
+        removeObject(cSelectLine2, cSelectSprites);
+        }
+
+        if(redLeft.x < 348 && redLeft.x > 347){
+        removeObject(cSelectTriangle2, cSelectSprites);
+        }
+
+        if(redLeft.x < 403 && redLeft.x > 402){
+        removeObject(cSelectSquare2, cSelectSprites);
+        }
+        if(yellowLeft.x < 458 && yellowLeft.x > 457){
+        removeObject(cSelectCircle2, cSelectSprites);
+        }
+        cSelectSprites.push(cSelectCircle2);
       }
 
 
@@ -167,15 +237,15 @@ function characterSelect()
       if(yellowLeft.x < 458 && yellowLeft.x > 457){
       removeObject(cSelectCircle, cSelectSprites);
       }
-      cSelectSprites.push(cSelectLine);
+    cSelectSprites.push(cSelectLine);
       yellowLeft.x = 292.499;
       yellowBottom.x = 292.5;
       yellowTop.x = 292.5;
       yellowRight.x = 337.5;
-      redLeft.x = 457.499;
-      redBottom.x = 457.5;
-      redTop.x = 457.5;
-      redRight.x = 502.5;
+      redLeft.x = -100;
+      redBottom.x = -100;
+      redTop.x = -100;
+      redRight.x = -100;
       gameState = MODESELECT;
     }
     break;
@@ -190,20 +260,20 @@ function characterSelect()
 
         if (R1 == redLeft.x){
 
-          // if(redLeft.x < 348 && redLeft.x > 347){
-          // removeObject(cSelectTriangle, cSelectSprites);
-          // cSelectSprites.push(cSelectLine);
-          //}
+          if(redLeft.x < 348 && redLeft.x > 347){
+          removeObject(cSelectTriangle2, cSelectSprites);
+          cSelectSprites.push(cSelectLine2);
+          }
 
-          // if(redLeft.x < 403 && redLeft.x > 402){
-          // removeObject(cSelectSquare, cSelectSprites);
-          // cSelectSprites.push(cSelectTriangle);
-          //}
+          if(redLeft.x < 403 && redLeft.x > 402){
+          removeObject(cSelectSquare2, cSelectSprites);
+          cSelectSprites.push(cSelectTriangle2);
+          }
 
-          // if(redLeft.x > 457){
-          // removeObject(cSelectCircle, cSelectSprites);
-          // cSelectSprites.push(cSelectSquare);
-          //}
+          if(redLeft.x > 457){
+          removeObject(cSelectCircle2, cSelectSprites);
+          cSelectSprites.push(cSelectSquare2);
+          }
 
         redLeft.x = redLeft.x - 55;
         redRight.x = redRight.x - 55;
@@ -222,20 +292,20 @@ function characterSelect()
 
         if (R1 == redLeft.x){
 
-          // if(redLeft.x < 293){
-          // removeObject(cSelectLine, cSelectSprites);
-          // cSelectSprites.push(cSelectTriangle);
-          //}
+          if(redLeft.x < 293){
+          removeObject(cSelectLine2, cSelectSprites);
+          cSelectSprites.push(cSelectTriangle2);
+          }
 
-          // if(redLeft.x < 348 && redLeft.x > 347){
-          // removeObject(cSelectTriangle, cSelectSprites);
-          // cSelectSprites.push(cSelectSquare);
-          //}
+          if(redLeft.x < 348 && redLeft.x > 347){
+          removeObject(cSelectTriangle2, cSelectSprites);
+          cSelectSprites.push(cSelectSquare2);
+          }
 
-          //if(redLeft.x < 403 && redLeft.x > 402){
-          // removeObject(cSelectSquare, cSelectSprites);
-          // cSelectSprites.push(cSelectCircle);
-          //}
+          if(redLeft.x < 403 && redLeft.x > 402){
+          removeObject(cSelectSquare2, cSelectSprites);
+          cSelectSprites.push(cSelectCircle2);
+          }
           if (redLeft.x < 404) {
         redLeft.x = redLeft.x + 55;
         redRight.x = redRight.x + 55;
@@ -250,8 +320,12 @@ function characterSelect()
 
       case SPACE2:
       if(player2){
-      if (gameState == CHARACTERSELECT){
-      if (redLeft.x == 292.5){
+        if (gameState == CHARACTERSELECT){
+        if (redLeft.x > 292.1 && redLeft.x < 292.99){
+        P2 = line2;
+        redRemove();
+      }
+      if (P1 != null){
       gameState = PLAYING;
     }
   }

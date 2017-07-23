@@ -1,6 +1,24 @@
+//removes red selecter during 2  player character select
+function redRemove(){
+  if (player2){
+  redLeft.x = -100;
+  redBottom.x = -100;
+  redTop.x = -100;
+  redRight.x = -100;
+}
+}
 
 
 
+//removes yellow selecter during 2  player character select
+function yellowRemove(){
+  if (player2){
+  yellowLeft.x = -100;
+  yellowBottom.x = -100;
+  yellowTop.x = -100;
+  yellowRight.x = -100;
+}
+}
 
 // removes object from array
 

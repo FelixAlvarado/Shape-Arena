@@ -44,10 +44,18 @@ selectSprites.push(squareSelect);
 selectSprites.push(circleSelect);
 cSelectSprites.push(selectScreen);
 cSelectSprites.push(yellowRight);
+cSelectSprites.push(redLeft);
 cSelectSprites.push(yellowBottom);
+cSelectSprites.push(redRight);
+cSelectSprites.push(redTop);
 cSelectSprites.push(yellowLeft);
+cSelectSprites.push(redBottom);
 cSelectSprites.push(yellowTop);
 cSelectSprites.push(cSelectLine);
+cSelectSprites.push(cBorder1);
+cSelectSprites.push(cBorder2);
+cSelectSprites.push(cBorder3);
+cSelectSprites.push(cBorder4);
 
 var image = new Image();
 // image.addEventListener("load", loadHandler, false);
@@ -61,6 +69,9 @@ var OVER = 2;
 var MODESELECT = 3;
 var CHARACTERSELECT = 4;
 var gameState = MODESELECT;
+var P1 = null;
+var P2 = null;
+
 
 var RIGHT = 68; // d **down and right buttons only work at same time when its arrow keys (try and look up later) could also be just my conputer
 var LEFT = 65; // a
@@ -102,7 +113,9 @@ function removeObject(objectToRemove, array){
 
 function playGame()
 {
-
+if (player2){
+  sprites.push(line2);
+}
   keyDown(event);
 
   keyUp(event);
