@@ -399,6 +399,11 @@ function characterSelect()
       R1 = redLeft.x;
       break;
 
+      case SPACE2:
+      break;
+
+      case Z2:
+      break;
 
 
     }

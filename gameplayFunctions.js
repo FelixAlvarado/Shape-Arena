@@ -54,21 +54,21 @@ function keyDown(){
       break;
 
       case SPACE:
+      console.log(event.keyCode);
       if (mana.swx < 25)
       {
         break;
       }
       if (!moveDown && !moveUp && !moveLeft && !moveRight)
       {
-        console.log('first');
         break;
       }
       if(!spaceKeyIsDown)
       {
-        console.log('second');
         mana.swx = mana.swx - 25;
         lineShoot = true;
         spaceKeyIsDown = true;
+
 
       }
 
@@ -103,8 +103,89 @@ function keyDown(){
         xIsDown = true;
       }
 
+      case LEFT2:
+      if (player2) {
+      moveLeft2 = true;
     }
-  }, false);
+      break;
+
+      case RIGHT2:
+      if (player2) {
+      moveRight2 = true;
+    }
+      break;
+
+      case UP2:
+      if (player2){
+      moveUp2 = true;
+    }
+      break;
+
+      case DOWN2:
+      if (player2){
+      moveDown2 = true;
+    }
+      break;
+
+      case SPACE2:
+      if (player2){
+      if (mana2.swx < 25)
+      {
+        break;
+      }
+      if (!moveDown2 && !moveUp2 && !moveLeft2 && !moveRight2)
+      {
+
+        break;
+      }
+      if(!spaceKeyIsDown2)
+      {
+
+        mana2.swx = mana2.swx - 25;
+        lineShoot2 = true;
+        spaceKeyIsDown2 = true;
+
+      }
+}
+      break;
+
+      case Z2:
+      if (player2){
+      if (mana2.swx < 75)
+      {
+        break;
+      }
+      if (!moveDown2 && !moveUp2 && !moveLeft2 && !moveRight2)
+      {
+        break;
+      }
+      if(!zIsDown2)
+      {
+        lineShoot2 = true;
+        zIsDown2 = true;
+
+      }
+    }
+      break;
+
+      case X2:
+      if (player2) {
+      if (mana2.swx < 75)
+      {
+        break;
+      }
+      if (!xIsDown2)
+      {
+        mana2.swx = mana2.swx - 75;
+        lineShoot2 = true;
+        xIsDown2 = true;
+      }
+    }
+  }
+}, false);
+
+
+  // }, false);
 
 
 }
@@ -144,6 +225,47 @@ window.addEventListener("keyup", function (event)
     xIsDown = false;
     break;
 
+    case LEFT2:
+    if (player2){
+    moveLeft2 = false;
+    line2.vx = 0;
+  }
+    break;
+
+    case RIGHT2:
+    if (player2) {
+    moveRight2 = false;
+  }
+    break;
+
+    case UP2:
+    if (player2){
+    moveUp2 = false;
+  }
+    break;
+
+    case DOWN2:
+    if (player2) {
+    moveDown2 = false;
+  }
+    break;
+
+    case SPACE2:
+    if (player2) {
+    spaceKeyIsDown2 = false;
+  }
+    break;
+
+    case Z2:
+    if (player2){
+    zIsDown2 = false;
+  }
+    break;
+
+    case X2:
+    xIsDown2 = false;
+    break;
+
   }
 },false);
 }
@@ -155,6 +277,7 @@ function drawPlayGame()
  {
    if (gameState == PLAYING)
    {
+
      if(sprites.length !== 0)
      {
        for (var i = 0; i < sprites.length; i++)
@@ -165,6 +288,14 @@ function drawPlayGame()
          drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, sprite.x, sprite.y, sprite.swx, sprite.swy);
        }
 
+     }
+
+     if(player2) {
+       manaSprites.push(mana2);
+       manaSprites.push(mbTop2);
+       manaSprites.push(mbBottom2);
+       manaSprites.push(mbLeft2);
+       manaSprites.push(mbRight2);
      }
 
      if(manaSprites.length !== 0)
@@ -184,6 +315,7 @@ function drawPlayGame()
 
  function lineFire()
  {
+
  if (spaceKeyIsDown){
    var missile = {
      width: 12,
@@ -344,6 +476,169 @@ function drawPlayGame()
    y: line.y + 20,
  }
 
+ //player2 missiles
+if (player2) {
+ if (spaceKeyIsDown2){
+   var missile = {
+     width: 12,
+     height:12,
+     sx: 100,
+     sy: 0,
+     swx: 12,
+     swy: 12,
+     vx:0,
+     vy:0,
+     x: 0,
+     y: 0,
+   }
+
+   if (moveLeft2){
+     missile.x = line2.x - 12;
+     missile.y = line2.y +  19;
+     missile.vx = -14;
+   }
+   if (moveRight2){
+     missile.x = line2.x + 10;
+     missile.y = line2.y +  19;
+       missile.vx = 14;
+   }
+   if (moveUp2){
+     missile.x = line2.x - 1;
+     missile.y = line2.y - 12;
+     missile.vy = -14;
+   }
+   if (moveDown2){
+     missile.x = line2.x - 1;
+     missile.y = line2.y + 50;
+   missile.vy = 14;
+ }
+ }
+ // line sp attack
+
+ if(zIsDown2){
+   var missile = {
+     width: 0,
+     height:0,
+     sx: 0,
+     sy: 0,
+     swx: 0,
+     swy: 0,
+     vx:0,
+     vy:0,
+     x: 0,
+     y: 0,
+   }
+
+   if (moveLeft2 && !moveDown2 && !moveUp2){
+     mana2.swx = mana2.swx - 75;
+     missile.x = canvas.width;
+     missile.y = line2.y + 20;
+     missile.width = 50;
+     missile.height = 10;
+     missile.sx = 50;
+     missile.sy = 0;
+     missile.swx = 50;
+     missile.swy = 10;
+     missile.vx = -10;
+   }
+   if (moveRight2  && !moveDown2 && !moveUp2){
+     mana2.swx = mana2.swx - 75;
+     missile.x = -50;
+     missile.y = line2.y + 20;
+     missile.width = 50;
+     missile.height = 10;
+     missile.sx = 50;
+     missile.sy = 0;
+     missile.swx = 50;
+     missile.swy = 10;
+     missile.vx = 10;
+   }
+   if (moveUp2 && !moveLeft2 && !moveRight2){
+     mana2.swx = mana2.swx - 75;
+     missile.x = line2.x;
+     missile.y = canvas.height;
+     missile.width = 10;
+     missile.height = 50;
+     missile.sx = 0;
+     missile.sy = 0;
+     missile.swx = 10;
+     missile.swy = 50;
+     missile.vy = -10;
+   }
+   if (moveDown2 && !moveLeft2 && !moveRight2){
+     mana2.swx = mana2.swx - 75;
+     missile.x = line2.x;
+     missile.y = -50;
+     missile.width = 10;
+     missile.height = 50;
+     missile.sx = 0;
+     missile.sy = 0;
+     missile.swx = 10;
+     missile.swy = 50;
+     missile.vy = 10;
+   }
+
+ }
+ if (spaceKeyIsDown2 || zIsDown2)
+ {
+   sprites.push(missile);
+   missiles.push(missile);
+ }
+
+ if(xIsDown2){
+ var missileUp = {
+   width: 10,
+   height: 50,
+   sx: 0,
+   sy: 0,
+   swx: 10,
+   swy: 50,
+   vx:0,
+   vy:-21,
+   x: line2.x,
+   y: line2.y,
+ }
+
+ var missileDown = {
+   width: 10,
+   height: 50,
+   sx: 0,
+   sy: 0,
+   swx: 10,
+   swy: 50,
+   vx:0,
+   vy:21,
+   x: line2.x,
+   y: line2.y,
+ }
+
+ var missileRight = {
+   width: 50,
+   height: 10,
+   sx: 50,
+   sy: 0,
+   swx: 50,
+   swy: 10,
+   vx:21,
+   vy:0,
+   x: line2.x - 25,
+   y: line2.y + 20,
+ }
+
+ var missileLeft = {
+   width: 50,
+   height: 10,
+   sx: 50,
+   sy: 0,
+   swx: 50,
+   swy: 10,
+   vx:-21,
+   vy:0,
+   x: line2.x - 25,
+   y: line2.y + 20,
+ }
+}
+
  sprites.push(missileUp);
  missiles.push(missileUp);
  sprites.push(missileDown);
@@ -356,12 +651,19 @@ function drawPlayGame()
  }
 
  }
-
+}
 // Increases player mana
 
-function manaIncrease(){
+function manaIncrease() {
   if (mana.swx < 250)
   {
   mana.swx++;
+  }
+
+  if(player2){
+    if (mana2.swx < 250)
+    {
+    mana2.swx++;
+    }
   }
 }

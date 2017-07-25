@@ -68,9 +68,10 @@ var PLAYING = 1;
 var OVER = 2;
 var MODESELECT = 3;
 var CHARACTERSELECT = 4;
-var gameState = MODESELECT;
+var gameState = PLAYING;
 var P1 = null;
 var P2 = null;
+var player2 = true;;
 
 
 var RIGHT = 68; // d **down and right buttons only work at same time when its arrow keys (try and look up later) could also be just my conputer
@@ -98,7 +99,15 @@ var moveRight = false;
 var moveLeft = false;
 var moveUp = false;
 var moveDown = false;
-var player2 = false;
+var lineShoot2 = false;
+var spaceKeyIsDown2 = false;
+var zIsDown2 = false;
+var xIsDown2 = false;
+var moveRight2 = false;
+var moveLeft2 = false;
+var moveUp2 = false;
+var moveDown2 = false;
+
 
 
 function removeObject(objectToRemove, array){
@@ -119,7 +128,6 @@ if (player2){
   keyDown(event);
 
   keyUp(event);
-
 //LEFT
 if(moveLeft && !moveRight)
 {
@@ -160,6 +168,50 @@ if(lineShoot)
 
 line.x = Math.max(0, Math.min(line.x + line.vx, canvas.width - line.width));
 line.y = Math.max(0, Math.min(line.y + line.vy, canvas.height - line.height));
+
+//player 2 mode
+if(player2){
+//LEFT2
+if(moveLeft2 && !moveRight2)
+{
+  line2.vx = -7;
+
+}
+//RIGHT2
+if(!moveLeft2 && moveRight2)
+{
+  line2.vx = 7;
+}
+//UP2
+if(moveUp2 && !moveDown2)
+{
+  line2.vy = -7;
+}
+//DOWN2
+if(moveDown2 && !moveUp2)
+{
+  line2.vy = 7;
+}
+//zero velocity if no buttons pressed
+if(!moveDown2 && !moveUp2)
+{
+  line2.vy = 0;
+}
+//zero velocity if no buttons pressed
+if(!moveLeft2 && !moveRight2)
+{
+  line2.vx = 0;
+}
+
+if(lineShoot2)
+{
+  lineFire();
+  lineShoot2 = false;
+}
+
+line2.x = Math.max(0, Math.min(line2.x + line2.vx, canvas.width - line2.width));
+line2.y = Math.max(0, Math.min(line2.y + line2.vy, canvas.height - line2.height));
+}
 
 //moveMissile
 for(var i = 0; i < missiles.length; i++)
