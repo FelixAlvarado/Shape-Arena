@@ -50,6 +50,7 @@ function selectGame()
       case SPACE:
       if (gameState == MODESELECT){
       if (select1.y == 275 || select1.y == 350){
+
       gameState = CHARACTERSELECT;
 
 }
@@ -86,6 +87,9 @@ function selectGame()
       break;
 
       case SPACE:
+      if (player2){
+        play = true;
+      }
       break;
 
 

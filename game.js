@@ -23,6 +23,7 @@ title.textAlign = "center";
 
 var sprites = [];
 var missiles = [];
+var missiles2 = [];
 var assetsToLoad = [];
 var manaSprites = [];
 var selectSprites = []
@@ -68,11 +69,11 @@ var PLAYING = 1;
 var OVER = 2;
 var MODESELECT = 3;
 var CHARACTERSELECT = 4;
-var gameState = PLAYING;
+var gameState = MODESELECT;
 var P1 = null;
 var P2 = null;
-var player2 = true;;
-
+var player2 = false;
+var play = false;  //making sure p1 select always appears on p2 select screen
 
 var RIGHT = 68; // d **down and right buttons only work at same time when its arrow keys (try and look up later) could also be just my conputer
 var LEFT = 65; // a
@@ -125,15 +126,18 @@ function playGame()
 if (player2){
   sprites.push(line2);
 }
+
   keyDown(event);
 
   keyUp(event);
+
 //LEFT
 if(moveLeft && !moveRight)
 {
   line.vx = -7;
 
 }
+
 //RIGHT
 if(!moveLeft && moveRight)
 {
@@ -165,7 +169,6 @@ if(lineShoot)
   lineFire();
   lineShoot = false;
 }
-
 line.x = Math.max(0, Math.min(line.x + line.vx, canvas.width - line.width));
 line.y = Math.max(0, Math.min(line.y + line.vy, canvas.height - line.height));
 
@@ -174,6 +177,7 @@ if(player2){
 //LEFT2
 if(moveLeft2 && !moveRight2)
 {
+
   line2.vx = -7;
 
 }
@@ -205,7 +209,8 @@ if(!moveLeft2 && !moveRight2)
 
 if(lineShoot2)
 {
-  lineFire();
+
+  lineFire2();
   lineShoot2 = false;
 }
 
@@ -222,6 +227,21 @@ for(var i = 0; i < missiles.length; i++)
 
   if(missile.x < -missile.width || missile.x > canvas.width || missile.y < -missile.height || missile.y > canvas.height){
     removeObject(missile, missiles);
+    removeObject(missile,sprites);
+    i--;
+  }
+
+}
+
+//moveMissile
+for(var i = 0; i < missiles2.length; i++)
+{
+  var missile = missiles2[i];
+  missile.x += missile.vx;
+  missile.y += missile.vy;
+
+  if(missile.x < -missile.width || missile.x > canvas.width || missile.y < -missile.height || missile.y > canvas.height){
+    removeObject(missile, missiles2);
     removeObject(missile,sprites);
     i--;
   }
@@ -266,12 +286,15 @@ function render()
 {
 
   drawingSurface.clearRect(0,0,canvas.width, canvas.height);
+
+
 drawPlayGame();
 drawSelectGame();
 drawCharacterSelect();
 
 
 }
+
 
   render();
 }
