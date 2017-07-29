@@ -32,6 +32,11 @@ var cSelectSprites = [];
 
 
 sprites.push(line);
+manaSprites.push(health);
+manaSprites.push(hTop);
+manaSprites.push(hBottom);
+manaSprites.push(hLeft);
+manaSprites.push(hRight);
 manaSprites.push(mana);
 manaSprites.push(mbTop);
 manaSprites.push(mbBottom);

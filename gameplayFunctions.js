@@ -294,6 +294,11 @@ function drawPlayGame()
      }
 
      if(player2) {
+       manaSprites.push(health2);
+       manaSprites.push(hTop2);
+       manaSprites.push(hBottom2);
+       manaSprites.push(hLeft2);
+       manaSprites.push(hRight2);
        manaSprites.push(mana2);
        manaSprites.push(mbTop2);
        manaSprites.push(mbBottom2);

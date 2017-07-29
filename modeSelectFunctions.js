@@ -48,7 +48,9 @@ function selectGame()
       break;
 
       case SPACE:
+      console.log(yellowLeft.x);
       if (gameState == MODESELECT){
+
       if (select1.y == 275 || select1.y == 350){
 
       gameState = CHARACTERSELECT;
@@ -68,6 +70,7 @@ function selectGame()
       }
       select1.y = 275;
       select2.y = 275;
+
     }
       break;
 
@@ -87,8 +90,12 @@ function selectGame()
       break;
 
       case SPACE:
-      if (player2){
-        play = true;
+      play = true;
+      if (gameState == MODESELECT){
+        yellowLeft.x = 292.499;
+        yellowBottom.x = 292.5;
+        yellowTop.x = 292.5;
+        yellowRight.x = 337.5;
       }
       break;
 

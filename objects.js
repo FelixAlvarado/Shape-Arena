@@ -37,6 +37,34 @@ var mana =
   vx:0,
   vy:0,
   x: 0,
+  y: 25,
+}
+
+var health =
+{
+  width: 250,
+  height: 25,
+  sx: 0,
+  sy: 100,
+  swx: 250,
+  swy: 25,
+  vx:0,
+  vy:0,
+  x: 0,
+  y: 0,
+}
+
+var health2 =
+{
+  width: 250,
+  height: 25,
+  sx: 0,
+  sy: 100,
+  swx: 250,
+  swy: 25,
+  vx:0,
+  vy:0,
+  x: 550,
   y: 0,
 }
 
@@ -51,10 +79,23 @@ var mana2 =
   vx:0,
   vy:0,
   x: 550,
-  y: 0,
+  y: 25,
 }
 
 var mbTop = {
+  width: 250,
+  height: 5,
+  sx: 0,
+  sy: 150,
+  swx: 250,
+  swy: 5,
+  vx:0,
+  vy:0,
+  x: 0,
+  y: 25,
+}
+
+var hTop = {
   width: 250,
   height: 5,
   sx: 0,
@@ -77,6 +118,19 @@ var mbTop2 = {
   vx:0,
   vy:0,
   x: 550,
+  y: 25,
+}
+
+var hTop2 = {
+  width: 250,
+  height: 5,
+  sx: 0,
+  sy: 150,
+  swx: 250,
+  swy: 5,
+  vx:0,
+  vy:0,
+  x: 550,
   y: 0,
 }
 
@@ -90,7 +144,33 @@ var mbBottom = {
   vx:0,
   vy:0,
   x: 0,
-  y: 20,
+  y: 45,
+}
+
+var hBottom = {
+  width: 250,
+  height: 5,
+  sx: 0,
+  sy: 170,
+  swx: 250,
+  swy: 5,
+  vx:0,
+  vy:0,
+  x: 0,
+  y: 0,
+}
+
+var hBottom2 = {
+  width: 250,
+  height: 5,
+  sx: 0,
+  sy: 170,
+  swx: 250,
+  swy: 5,
+  vx:0,
+  vy:0,
+  x: 550,
+  y: 0,
 }
 
 var mbBottom2 = {
@@ -103,7 +183,7 @@ var mbBottom2 = {
   vx:0,
   vy:0,
   x: 550,
-  y: 20,
+  y: 45,
 }
 
 var mbLeft = {
@@ -116,6 +196,32 @@ var mbLeft = {
   vx:0,
   vy:0,
   x: 0,
+  y: 25,
+}
+
+var hLeft = {
+  width: 5,
+  height: 25,
+  sx: 0,
+  sy: 150,
+  swx: 5,
+  swy: 25,
+  vx:0,
+  vy:0,
+  x: 0,
+  y: 0,
+}
+
+var hLeft2 = {
+  width: 5,
+  height: 25,
+  sx: 0,
+  sy: 150,
+  swx: 5,
+  swy: 25,
+  vx:0,
+  vy:0,
+  x: 550,
   y: 0,
 }
 
@@ -129,7 +235,7 @@ var mbLeft2 = {
   vx:0,
   vy:0,
   x: 550,
-  y: 0,
+  y: 25,
 }
 
 var mbRight = {
@@ -142,6 +248,32 @@ var mbRight = {
   vx:0,
   vy:0,
   x: 245,
+  y: 25,
+}
+
+var hRight = {
+  width: 5,
+  height: 25,
+  sx: 245,
+  sy: 150,
+  swx: 5,
+  swy: 25,
+  vx:0,
+  vy:0,
+  x: 245,
+  y: 0,
+}
+
+var hRight2 = {
+  width: 5,
+  height: 25,
+  sx: 245,
+  sy: 150,
+  swx: 5,
+  swy: 25,
+  vx:0,
+  vy:0,
+  x: 795,
   y: 0,
 }
 
@@ -155,7 +287,7 @@ var mbRight2 = {
   vx:0,
   vy:0,
   x: 795,
-  y: 0,
+  y: 25,
 }
 
 var select1 = {

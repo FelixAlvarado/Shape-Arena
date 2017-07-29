@@ -182,17 +182,19 @@ function characterSelect()
 
       case SPACE:
       if (gameState == CHARACTERSELECT){
-      if (yellowLeft.x > 292.1 && yellowLeft.x < 292.99 && play){
+
+      if (yellowLeft.x > 292.1 && yellowLeft.x < 292.99){
       P1 = line;
     yellowRemove();
     }
+
 
     if (player2){
      if (P2 != null){
     gameState = PLAYING;
   }
 }
-    if (!player2 && yellowLeft.x > 292.49 && yellowLeft.x < 292.51 && gameState == CHARACTERSELECT){
+    if (!player2 && yellowLeft.x > 292.49 && yellowLeft.x < 292.51 && gameState == CHARACTERSELECT && play){
       gameState = PLAYING;
     }
 }
@@ -200,10 +202,10 @@ function characterSelect()
 
       case Z:
       if (gameState == CHARACTERSELECT){
-
+        play = false;
       if (player2){
         player2 = false;
-        play = false;
+
 
         // removeObject(8, cSelectSprites);
         if(redLeft.x < 293){
@@ -240,10 +242,7 @@ function characterSelect()
       removeObject(cSelectCircle, cSelectSprites);
       }
     cSelectSprites.push(cSelectLine);
-      yellowLeft.x = 292.499;
-      yellowBottom.x = 292.5;
-      yellowTop.x = 292.5;
-      yellowRight.x = 337.5;
+    
       redLeft.x = -100;
       redBottom.x = -100;
       redTop.x = -100;
