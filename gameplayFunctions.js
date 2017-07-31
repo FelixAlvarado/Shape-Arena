@@ -184,6 +184,12 @@ function keyDown(){
       }
     }
     break;
+
+    case PAUSE:
+    if (gameState == PLAYING){
+      pauseGame = true;
+    }
+    break;
   }
 }, false);
 
@@ -269,6 +275,12 @@ window.addEventListener("keyup", function (event)
     xIsDown2 = false;
     break;
 
+    case PAUSE:
+    if (gameState == PLAYING){
+
+
+    }
+
   }
 },false);
 }
@@ -280,7 +292,7 @@ function drawPlayGame()
  {
    if (gameState == PLAYING)
    {
-
+if (!pauseGame){
      if(sprites.length !== 0)
      {
        for (var i = 0; i < sprites.length; i++)
@@ -317,6 +329,7 @@ function drawPlayGame()
        }
 
      }
+   }
    }
  }
 // function that shoots out the lines attack

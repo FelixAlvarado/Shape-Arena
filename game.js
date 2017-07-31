@@ -79,6 +79,7 @@ var P1 = null;
 var P2 = null;
 var player2 = false;
 var play = false;  //making sure p1 select always appears on p2 select screen
+var pauseGame = false; //used during playing gamestate for pause screen. Space used for pausing
 
 var RIGHT = 68; // d **down and right buttons only work at same time when its arrow keys (try and look up later) could also be just my conputer
 var LEFT = 65; // a
@@ -87,6 +88,7 @@ var DOWN = 83; //s
 var SPACE = 67; //c like a x on ps congtroller
 var Z = 86; //v like a circle on ps controller
 var X = 66; //b like a square on ps controller
+var PAUSE = 32; //space the pause button in all games
 
 //player 2 controllers
 var RIGHT2 = 76; // l
