@@ -28,7 +28,7 @@ var assetsToLoad = [];
 var manaSprites = [];
 var selectSprites = []
 var cSelectSprites = [];
-
+var pauseSprites = [];
 
 
 sprites.push(line);
@@ -62,7 +62,8 @@ cSelectSprites.push(cBorder1);
 cSelectSprites.push(cBorder2);
 cSelectSprites.push(cBorder3);
 cSelectSprites.push(cBorder4);
-
+pauseSprites.push (select3);
+pauseSprites.push(select4);
 var image = new Image();
 // image.addEventListener("load", loadHandler, false);
 image.src = "tilesheet.jpg";

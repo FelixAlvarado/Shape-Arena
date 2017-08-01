@@ -47,10 +47,18 @@ function keyDown(){
 
       case UP:
       moveUp = true;
+      if (pauseGame && select3.y > 275){
+        select3.y = select3.y - 100;
+        select4.y = select4.y - 100;
+      }
       break;
 
       case DOWN:
       moveDown = true;
+      if (pauseGame && select3.y < 350){
+        select3.y = select3.y + 100;
+        select4.y = select4.y + 100;
+      }
       break;
 
       case SPACE:
@@ -292,7 +300,25 @@ function drawPlayGame()
  {
    if (gameState == PLAYING)
    {
-if (!pauseGame){
+     if (pauseGame){
+       title.font = "40pt Arial";
+       title.fillText("Pause", 400, 100);
+       title.fillText("Resume", 400, 300);
+       title.fillText("Quit Game", 400, 400);
+
+       if(pauseSprites.length !== 0)
+       {
+         for (var i = 0; i < pauseSprites.length; i++)
+         {
+           var sprite = pauseSprites[i];
+
+
+           drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, sprite.x, sprite.y, sprite.swx, sprite.swy);
+         }
+
+       }
+     }
+     if (!pauseGame){
      if(sprites.length !== 0)
      {
        for (var i = 0; i < sprites.length; i++)

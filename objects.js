@@ -303,6 +303,32 @@ var select1 = {
   y: 275,
 }
 
+var select3 = {
+  width: 12,
+  height:12,
+  sx: 100,
+  sy: 0,
+  swx: 12,
+  swy: 12,
+  vx:0,
+  vy:0,
+  x: 285,
+  y: 275,
+}
+
+var select4 = {
+  width: 12,
+  height:12,
+  sx: 100,
+  sy: 0,
+  swx: 12,
+  swy: 12,
+  vx:0,
+  vy:0,
+  x: 505,
+  y: 275,
+}
+
 var select2 = {
   width: 12,
   height:12,
