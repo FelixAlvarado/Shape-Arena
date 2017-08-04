@@ -274,6 +274,7 @@ switch(gameState)
   case PLAYING:
   if (!pauseGame){
   playGame();
+
 }
   break;
 

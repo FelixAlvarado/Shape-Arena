@@ -1,3 +1,57 @@
+//finding x center of onbect
+function centerX(x){
+var centerX = x.x + (x.width)/2
+return centerX;
+
+}
+
+//finding y center of onbect
+function centerY(y){
+var centerY = y.y + (y.height)/2
+return centerY;
+
+}
+
+//finding half width
+function halfWidth(x){
+var halfW = (x.width)/2
+return halfW;
+
+}
+
+//finding half height
+function halfHeight(y){
+var halfH = (y.height)/2
+return halfH;
+
+}
+
+//collision function
+
+function collision(x,y){
+  var hit = false;
+
+  var vx = centerX(x) - centerX(y);
+  var vy = centerY(x) - centerY(y);
+
+  var combinedHalfWidths = halfWidth(x) + halfWidth(y);
+  var combinedHalfHeights = halfHeight(x) + halfHeight(y);
+
+  if(Math.abs(vx) < combinedHalfWidths){
+
+    if(Math.abs(vy) < combinedHalfHeights){
+      hit = true;
+    }
+    else{
+      hit = false;
+    }
+  }
+  else {
+    hit = false;
+  }
+  return hit;
+}
+
 //removes red selecter during 2  player character select
 function redRemove(){
   if (player2){
