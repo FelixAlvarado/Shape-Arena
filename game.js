@@ -81,7 +81,7 @@ var P2 = null;
 var player2 = false;
 var play = false;  //making sure p1 select always appears on p2 select screen
 var pauseGame = false; //used during playing gamestate for pause screen. Space used for pausing
-
+var pauseSwitch = false;
 var RIGHT = 68; // d **down and right buttons only work at same time when its arrow keys (try and look up later) could also be just my conputer
 var LEFT = 65; // a
 var UP = 87; //w
@@ -257,8 +257,8 @@ for(var i = 0; i < missiles2.length; i++)
 }
 
 }
-
 setInterval(manaIncrease, 40);
+
 
 
 function update()
@@ -272,7 +272,9 @@ switch(gameState)
   // break;
 
   case PLAYING:
+  if (!pauseGame){
   playGame();
+}
   break;
 
   case OVER:

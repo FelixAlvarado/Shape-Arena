@@ -50,6 +50,8 @@ function keyDown(){
       if (pauseGame && select3.y > 275){
         select3.y = select3.y - 100;
         select4.y = select4.y - 100;
+        select3.x = select3.x + 30;
+        select4.x = select4.x - 30;
       }
       break;
 
@@ -58,6 +60,8 @@ function keyDown(){
       if (pauseGame && select3.y < 350){
         select3.y = select3.y + 100;
         select4.y = select4.y + 100;
+        select3.x = select3.x - 30;
+        select4.x = select4.x + 30;
       }
       break;
 
@@ -79,6 +83,7 @@ function keyDown(){
 
 
       }
+
 
       break;
 
@@ -194,9 +199,23 @@ function keyDown(){
     break;
 
     case PAUSE:
-    if (gameState == PLAYING){
+    if (gameState == PLAYING && !pauseGame && !pauseSwitch){
       pauseGame = true;
+
     }
+  //   if (pauseGame){
+  //   console.log(pauseSwitch);
+  //   console.log(select3.y);
+  //   console.log(pauseGame);
+  // }
+    if (pauseGame && select3.y == 275 && pauseSwitch){
+      pauseGame = false;
+    }
+
+    if (pauseGame && select3.y == 375 && pauseSwitch){
+      location.reload();
+    }
+
     break;
   }
 }, false);
@@ -271,6 +290,7 @@ window.addEventListener("keyup", function (event)
     if (player2) {
     spaceKeyIsDown2 = false;
   }
+
     break;
 
     case Z2:
@@ -284,11 +304,14 @@ window.addEventListener("keyup", function (event)
     break;
 
     case PAUSE:
-    if (gameState == PLAYING){
-
-
+    if (gameState == PLAYING && pauseGame){
+      pauseSwitch = true;
+    }
+    if (gameState == PLAYING && !pauseGame){
+      pauseSwitch = false;
     }
 
+    break;
   }
 },false);
 }
@@ -721,6 +744,7 @@ function drawPlayGame()
 // Increases player mana
 
 function manaIncrease() {
+if (!pauseGame){
   if (mana.swx < 250)
   {
   mana.swx++;
@@ -732,4 +756,5 @@ function manaIncrease() {
     mana2.swx++;
     }
   }
+}
 }
