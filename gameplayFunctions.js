@@ -1,3 +1,18 @@
+//end game
+function endGame()
+{
+
+if (health.swx <= 0){
+  title.font = "40pt Arial";
+  title.fillText("Player 2 Wins!!!", 400, 100);
+}
+
+if (health2.swx <= 0){
+  title.font = "40pt Arial";
+  title.fillText("Player 1 Wins!!!", 400, 100);
+}
+}
+
 //finding x center of onbect
 function centerX(x){
 var centerX = x.x + (x.width)/2
@@ -142,7 +157,7 @@ function keyDown(){
       break;
 
       case Z:
-      if (mana.swx < 75)
+      if (mana.swx < 50)
       {
         break;
       }
@@ -159,13 +174,13 @@ function keyDown(){
       break;
 
       case X:
-      if (mana.swx < 75)
+      if (mana.swx < 50)
       {
         break;
       }
       if (!xIsDown)
       {
-        mana.swx = mana.swx - 75;
+        mana.swx = mana.swx - 50;
         lineShoot = true;
         xIsDown = true;
       }
@@ -219,7 +234,7 @@ function keyDown(){
 
       case Z2:
       if (player2){
-      if (mana2.swx < 75)
+      if (mana2.swx < 50)
       {
         break;
       }
@@ -239,13 +254,13 @@ function keyDown(){
 
       case X2:
       if (player2) {
-      if (mana2.swx < 75)
+      if (mana2.swx < 50)
       {
         break;
       }
       if (!xIsDown2)
       {
-        mana2.swx = mana2.swx - 75;
+        mana2.swx = mana2.swx - 50;
         lineShoot2 = true;
         xIsDown2 = true;
       }
@@ -452,6 +467,7 @@ function drawPlayGame()
      vy:0,
      x: 0,
      y: 0,
+     dmg: 15
    }
 
    if (moveLeft){
@@ -489,10 +505,11 @@ function drawPlayGame()
      vy:0,
      x: 0,
      y: 0,
+     dmg: 30
    }
 
    if (moveLeft && !moveDown && !moveUp){
-     mana.swx = mana.swx - 75;
+     mana.swx = mana.swx - 50;
      missile.x = canvas.width;
      missile.y = line.y + 20;
      missile.width = 50;
@@ -504,7 +521,7 @@ function drawPlayGame()
      missile.vx = -10;
    }
    if (moveRight  && !moveDown && !moveUp){
-     mana.swx = mana.swx - 75;
+     mana.swx = mana.swx - 50;
      missile.x = -50;
      missile.y = line.y + 20;
      missile.width = 50;
@@ -516,7 +533,7 @@ function drawPlayGame()
      missile.vx = 10;
    }
    if (moveUp && !moveLeft && !moveRight){
-     mana.swx = mana.swx - 75;
+     mana.swx = mana.swx - 50;
      missile.x = line.x;
      missile.y = canvas.height;
      missile.width = 10;
@@ -528,7 +545,7 @@ function drawPlayGame()
      missile.vy = -10;
    }
    if (moveDown && !moveLeft && !moveRight){
-     mana.swx = mana.swx - 75;
+     mana.swx = mana.swx - 50;
      missile.x = line.x;
      missile.y = -50;
      missile.width = 10;
@@ -559,6 +576,7 @@ function drawPlayGame()
    vy:-21,
    x: line.x,
    y: line.y,
+   dmg: 30
  }
 
  var missileDown = {
@@ -572,6 +590,7 @@ function drawPlayGame()
    vy:21,
    x: line.x,
    y: line.y,
+   dmg: 30
  }
 
  var missileRight = {
@@ -585,6 +604,7 @@ function drawPlayGame()
    vy:0,
    x: line.x - 25,
    y: line.y + 20,
+   dmg: 30
  }
 
  var missileLeft = {
@@ -598,6 +618,7 @@ function drawPlayGame()
    vy:0,
    x: line.x - 25,
    y: line.y + 20,
+   dmg: 30
  }
 
 
@@ -633,6 +654,7 @@ function drawPlayGame()
        vy:0,
        x: 0,
        y: 0,
+       dmg: 15
      }
 
      if (moveLeft2){
@@ -671,10 +693,11 @@ function drawPlayGame()
        vy:0,
        x: 0,
        y: 0,
+       dmg: 30
      }
 
      if (moveLeft2 && !moveDown2 && !moveUp2){
-       mana2.swx = mana2.swx - 75;
+       mana2.swx = mana2.swx - 50;
        missile2.x = canvas.width;
        missile2.y = line2.y + 20;
        missile2.width = 50;
@@ -686,7 +709,7 @@ function drawPlayGame()
        missile2.vx = -10;
      }
      if (moveRight2  && !moveDown2 && !moveUp2){
-       mana2.swx = mana2.swx - 75;
+       mana2.swx = mana2.swx - 50;
        missile2.x = -50;
        missile2.y = line2.y + 20;
        missile2.width = 50;
@@ -698,7 +721,7 @@ function drawPlayGame()
        missile2.vx = 10;
      }
      if (moveUp2 && !moveLeft2 && !moveRight2){
-       mana2.swx = mana2.swx - 75;
+       mana2.swx = mana2.swx - 50;
        missile2.x = line2.x;
        missile2.y = canvas.height;
        missile2.width = 10;
@@ -710,7 +733,7 @@ function drawPlayGame()
        missile2.vy = -10;
      }
      if (moveDown2 && !moveLeft2 && !moveRight2){
-       mana2.swx = mana2.swx - 75;
+       mana2.swx = mana2.swx - 50;
        missile2.x = line2.x;
        missile2.y = -50;
        missile2.width = 10;
@@ -741,6 +764,7 @@ function drawPlayGame()
      vy:-21,
      x: line2.x,
      y: line2.y,
+     dmg: 30
    }
 
    var missileDown2 = {
@@ -754,6 +778,7 @@ function drawPlayGame()
      vy:21,
      x: line2.x,
      y: line2.y,
+     dmg: 30
    }
 
    var missileRight2 = {
@@ -767,6 +792,7 @@ function drawPlayGame()
      vy:0,
      x: line2.x - 25,
      y: line2.y + 20,
+     dmg: 30
    }
 
    var missileLeft2 = {
@@ -780,6 +806,7 @@ function drawPlayGame()
      vy:0,
      x: line2.x - 25,
      y: line2.y + 20,
+     dmg: 30
    }
 
 

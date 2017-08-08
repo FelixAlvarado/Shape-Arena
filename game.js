@@ -239,6 +239,19 @@ for(var i = 0; i < missiles.length; i++)
     i--;
   }
 
+  if(collision(missile, line2)){
+    removeObject(missile, missiles);
+    removeObject(missile,sprites);
+    health2.swx = health2.swx - missile.dmg;
+    i--;
+    if(health2.swx <= 0){
+      gameState = OVER;
+    }
+
+  }
+
+
+
 }
 
 //moveMissile
@@ -252,6 +265,17 @@ for(var i = 0; i < missiles2.length; i++)
     removeObject(missile, missiles2);
     removeObject(missile,sprites);
     i--;
+  }
+
+  if(collision(missile, line)){
+    removeObject(missile, missiles2);
+    removeObject(missile,sprites);
+    health.swx = health.swx - missile.dmg;
+    i--;
+    if(health.swx <= 0){
+      gameState = OVER;
+    }
+
   }
 
 }
@@ -280,7 +304,7 @@ switch(gameState)
 
   case OVER:
 
-  endGame();
+  // endGame(); inside render function
   break;
 
   case MODESELECT:
@@ -302,7 +326,7 @@ function render()
 drawPlayGame();
 drawSelectGame();
 drawCharacterSelect();
-
+endGame();
 
 }
 
@@ -322,10 +346,7 @@ update();
 // }
 
 
-function endGame()
-{
-  //empty right now
-}
+
 
 
 // }());

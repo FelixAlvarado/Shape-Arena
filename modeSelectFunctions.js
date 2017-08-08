@@ -48,7 +48,6 @@ function selectGame()
       break;
 
       case SPACE:
-      console.log(yellowLeft.x);
       if (gameState == MODESELECT){
 
       if (select1.y == 275 || select1.y == 350){

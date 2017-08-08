@@ -185,6 +185,10 @@ function characterSelect()
 
       if (yellowLeft.x > 292.1 && yellowLeft.x < 292.99){
       P1 = line;
+      if (!player2){
+        line2.x = line2.x + 500;
+      }
+
     yellowRemove();
     }
 
@@ -242,7 +246,7 @@ function characterSelect()
       removeObject(cSelectCircle, cSelectSprites);
       }
     cSelectSprites.push(cSelectLine);
-    
+
       redLeft.x = -100;
       redBottom.x = -100;
       redTop.x = -100;
