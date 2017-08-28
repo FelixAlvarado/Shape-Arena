@@ -65,17 +65,17 @@ cSelectSprites.push(cBorder4);
 pauseSprites.push (select3);
 pauseSprites.push(select4);
 var image = new Image();
-// image.addEventListener("load", loadHandler, false);
+image.addEventListener("load", loadHandler, false);
 image.src = "tilesheet.jpg";
-// assetsToLoad.push(image);
+assetsToLoad.push(image);
 
-// var assetsLoaded = 0;
-// var LOADING = 0;
+var assetsLoaded = 0;
+var LOADING = 0;
 var PLAYING = 1;
 var OVER = 2;
 var MODESELECT = 3;
 var CHARACTERSELECT = 4;
-var gameState = MODESELECT;
+var gameState = LOADING;
 var P1 = null;
 var P2 = null;
 var player2 = false;
@@ -295,6 +295,10 @@ switch(gameState)
   // console.log("loading...");
   // break;
 
+  case LOADING:
+  console.log('loading...');
+  break;
+
   case PLAYING:
   if (!pauseGame){
   playGame();
@@ -334,16 +338,7 @@ endGame();
   render();
 }
 update();
-// function loadHandler()
-// {
-//   assetsLoaded++;
-//   if(assetsLoaded === assetsToLoad.length)
-//   {
-//     image.removeEventListener("load", loadHandler, false);
-//
-//     gameState = PLAYING;
-//   }
-// }
+
 
 
 

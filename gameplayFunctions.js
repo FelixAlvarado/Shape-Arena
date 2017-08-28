@@ -1,3 +1,17 @@
+// loading stuff
+
+function loadHandler()
+{
+  assetsLoaded++;
+  if(assetsLoaded === assetsToLoad.length)
+  {
+    image.removeEventListener("load", loadHandler, false);
+
+    gameState = MODESELECT;
+  }
+}
+
+
 //end game
 function endGame()
 {
