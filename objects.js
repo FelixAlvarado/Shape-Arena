@@ -26,6 +26,20 @@ x: 700,
 y: 250,
 }
 
+var triangle =
+{
+width: 50,
+height: 50,
+sx: 150,
+sy: 0,
+swx: 49,
+swy: 50,
+vx:0,
+vy:0,
+x: 100,
+y: 250,
+}
+
 var mana =
 {
   width: 250,

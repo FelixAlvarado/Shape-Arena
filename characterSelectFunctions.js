@@ -185,13 +185,19 @@ function characterSelect()
 
       if (yellowLeft.x > 292.1 && yellowLeft.x < 292.99){
       P1 = line;
-      if (!player2){
-        line2.x = line2.x + 500;
-      }
-
-    yellowRemove();
+      sprites.push(line);
+      yellowRemove();
     }
 
+    if (yellowLeft.x > 347.1 && yellowLeft.x < 347.99){
+    P1 = triangle;
+    sprites.push(triangle);
+    yellowRemove();
+  }
+
+    if (!player2){
+      line2.x = line2.x + 500;
+    }
 
     if (player2){
      if (P2 != null){
@@ -199,6 +205,10 @@ function characterSelect()
   }
 }
     if (!player2 && yellowLeft.x > 292.49 && yellowLeft.x < 292.51 && gameState == CHARACTERSELECT && play){
+      gameState = PLAYING;
+    }
+
+    if (!player2 && yellowLeft.x > 347.49 && yellowLeft.x < 347.51 && gameState == CHARACTERSELECT && play){
       gameState = PLAYING;
     }
 }

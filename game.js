@@ -31,7 +31,7 @@ var cSelectSprites = [];
 var pauseSprites = [];
 
 
-sprites.push(line);
+// sprites.push(line);
 manaSprites.push(health);
 manaSprites.push(hTop);
 manaSprites.push(hBottom);
@@ -142,34 +142,34 @@ if (player2){
 //LEFT
 if(moveLeft && !moveRight)
 {
-  line.vx = -7;
+  P1.vx = -7;
 
 }
 
 //RIGHT
 if(!moveLeft && moveRight)
 {
-  line.vx = 7;
+  P1.vx = 7;
 }
 //UP
 if(moveUp && !moveDown)
 {
-  line.vy = -7;
+  P1.vy = -7;
 }
 //DOWN
 if(moveDown && !moveUp)
 {
-  line.vy = 7;
+  P1.vy = 7;
 }
 //zero velocity if no buttons pressed
 if(!moveDown && !moveUp)
 {
-  line.vy = 0;
+  P1.vy = 0;
 }
 //zero velocity if no buttons pressed
 if(!moveLeft && !moveRight)
 {
-  line.vx = 0;
+  P1.vx = 0;
 }
 
 if(lineShoot)
@@ -177,8 +177,8 @@ if(lineShoot)
   lineFire();
   lineShoot = false;
 }
-line.x = Math.max(0, Math.min(line.x + line.vx, canvas.width - line.width));
-line.y = Math.max(0, Math.min(line.y + line.vy, canvas.height - line.height));
+P1.x = Math.max(0, Math.min(P1.x + P1.vx, canvas.width - P1.width));
+P1.y = Math.max(0, Math.min(P1.y + P1.vy, canvas.height - P1.height));
 
 //player 2 mode
 if(player2){
