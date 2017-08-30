@@ -174,8 +174,10 @@ if(!moveLeft && !moveRight)
 
 if(lineShoot)
 {
+  if (P1 == line){
   lineFire();
   lineShoot = false;
+}
 }
 P1.x = Math.max(0, Math.min(P1.x + P1.vx, canvas.width - P1.width));
 P1.y = Math.max(0, Math.min(P1.y + P1.vy, canvas.height - P1.height));

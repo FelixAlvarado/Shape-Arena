@@ -158,7 +158,7 @@ function keyDown(){
       {
         break;
       }
-      if(!spaceKeyIsDown)
+      if(!spaceKeyIsDown && P1 == line)
       {
         mana.swx = mana.swx - 25;
         lineShoot = true;
@@ -192,7 +192,7 @@ function keyDown(){
       {
         break;
       }
-      if (!xIsDown)
+      if (!xIsDown && P1 == line)
       {
         mana.swx = mana.swx - 50;
         lineShoot = true;
