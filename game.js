@@ -255,7 +255,7 @@ for(var i = 0; i < missiles.length; i++)
     removeObject(missile,sprites);
     i--;
   }
-
+if (player2){
   if(collision(missile, P2)){
     removeObject(missile, missiles);
     removeObject(missile,sprites);
@@ -266,6 +266,7 @@ for(var i = 0; i < missiles.length; i++)
     }
 
   }
+}
 
 
 
@@ -284,7 +285,7 @@ for(var i = 0; i < missiles2.length; i++)
     i--;
   }
 
-  if(collision(missile, line)){
+  if(collision(missile, P1)){
     removeObject(missile, missiles2);
     removeObject(missile,sprites);
     health.swx = health.swx - missile.dmg;
