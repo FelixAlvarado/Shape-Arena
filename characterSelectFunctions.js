@@ -340,6 +340,10 @@ function characterSelect()
         P2 = line2;
         redRemove();
       }
+      if (redLeft.x > 347.1 && redLeft.x < 347.99){
+      P2 = triangle2;
+      redRemove();
+    }
       if (P1 != null){
       gameState = PLAYING;
     }

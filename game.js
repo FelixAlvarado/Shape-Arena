@@ -101,6 +101,7 @@ var Z2 = 191; //    / like a circle on ps controller
 var X2 = 16; //  shift like a square on ps controller
 
 var lineShoot = false;
+var triangleShoot = false;
 var spaceKeyIsDown = false;
 var zIsDown = false;
 var xIsDown = false;
@@ -109,6 +110,7 @@ var moveLeft = false;
 var moveUp = false;
 var moveDown = false;
 var lineShoot2 = false;
+var triangleShoot2 = false;
 var spaceKeyIsDown2 = false;
 var zIsDown2 = false;
 var xIsDown2 = false;
@@ -132,7 +134,7 @@ function removeObject(objectToRemove, array){
 function playGame()
 {
 if (player2){
-  sprites.push(line2);
+  sprites.push(P2);
 }
 
   keyDown(event);
@@ -179,6 +181,13 @@ if(lineShoot)
   lineShoot = false;
 }
 }
+if(triangleShoot){
+  if (P1 == triangle){
+  triangleFire();
+  triangleShoot = false;
+  }
+}
+
 P1.x = Math.max(0, Math.min(P1.x + P1.vx, canvas.width - P1.width));
 P1.y = Math.max(0, Math.min(P1.y + P1.vy, canvas.height - P1.height));
 
@@ -188,44 +197,50 @@ if(player2){
 if(moveLeft2 && !moveRight2)
 {
 
-  line2.vx = -7;
+  P2.vx = -7;
 
 }
 //RIGHT2
 if(!moveLeft2 && moveRight2)
 {
-  line2.vx = 7;
+  P2.vx = 7;
 }
 //UP2
 if(moveUp2 && !moveDown2)
 {
-  line2.vy = -7;
+  P2.vy = -7;
 }
 //DOWN2
 if(moveDown2 && !moveUp2)
 {
-  line2.vy = 7;
+  P2.vy = 7;
 }
 //zero velocity if no buttons pressed
 if(!moveDown2 && !moveUp2)
 {
-  line2.vy = 0;
+  P2.vy = 0;
 }
 //zero velocity if no buttons pressed
 if(!moveLeft2 && !moveRight2)
 {
-  line2.vx = 0;
+  P2.vx = 0;
 }
 
-if(lineShoot2)
+if(lineShoot2 && P2 == line2)
 {
 
   lineFire2();
   lineShoot2 = false;
 }
 
-line2.x = Math.max(0, Math.min(line2.x + line2.vx, canvas.width - line2.width));
-line2.y = Math.max(0, Math.min(line2.y + line2.vy, canvas.height - line2.height));
+if(triangleShoot2 && P2 == triangle2)
+{
+  triangleFire2();
+  triangleShoot2 = false;
+}
+
+P2.x = Math.max(0, Math.min(P2.x + P2.vx, canvas.width - P2.width));
+P2.y = Math.max(0, Math.min(P2.y + P2.vy, canvas.height - P2.height));
 }
 
 //moveMissile
@@ -241,7 +256,7 @@ for(var i = 0; i < missiles.length; i++)
     i--;
   }
 
-  if(collision(missile, line2)){
+  if(collision(missile, P2)){
     removeObject(missile, missiles);
     removeObject(missile,sprites);
     health2.swx = health2.swx - missile.dmg;

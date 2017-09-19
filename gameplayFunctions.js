@@ -150,18 +150,20 @@ function keyDown(){
 
       case SPACE:
 
-      if (mana.swx < 25)
-      {
-        break;
-      }
       if (!moveDown && !moveUp && !moveLeft && !moveRight)
       {
         break;
       }
-      if(!spaceKeyIsDown && P1 == line)
+      if(!spaceKeyIsDown)
       {
-        mana.swx = mana.swx - 25;
+        if (mana.swx >= 25 && P1 == line){
         lineShoot = true;
+      }
+      if (mana.swx >= 25 && P1 == triangle){
+        triangleShoot = true;
+
+
+      }
         spaceKeyIsDown = true;
 
 
@@ -171,32 +173,39 @@ function keyDown(){
       break;
 
       case Z:
-      if (mana.swx < 50)
-      {
-        break;
-      }
+
       if (!moveDown && !moveUp && !moveLeft && !moveRight)
       {
         break;
       }
       if(!zIsDown)
       {
+        if (mana.swx >= 50 && P1 == line){
         lineShoot = true;
+      }
+
+      if (mana.swx >= 75 && P1 == triangle){
+      triangleShoot = true;
+    }
         zIsDown = true;
 
       }
       break;
 
       case X:
-      if (mana.swx < 50)
+
+      if (!xIsDown)
       {
-        break;
-      }
-      if (!xIsDown && P1 == line)
-      {
+        if (mana.swx >= 50 && P1 == line){
         mana.swx = mana.swx - 50;
         lineShoot = true;
+      }
+      if (mana.swx >= 100 && P1 == triangle){
+        mana.swx = mana.swx - 100;
+        triangleShoot = true;
+      }
         xIsDown = true;
+
       }
       break;
 
@@ -225,25 +234,29 @@ function keyDown(){
       break;
 
       case SPACE2:
-      if (player2){
-      if (mana2.swx < 25)
-      {
-        break;
-      }
+
+
       if (!moveDown2 && !moveUp2 && !moveLeft2 && !moveRight2)
       {
 
         break;
       }
-      if(!spaceKeyIsDown2)
-      {
 
+      if(!spaceKeyIsDown2 && player2)
+      {
+        if (P2 == line2 && mana2.swx >= 25){
         mana2.swx = mana2.swx - 25;
         lineShoot2 = true;
-        spaceKeyIsDown2 = true;
-
       }
-}
+
+      if (P2 == triangle2 && mana2.swx >= 25){
+      mana2.swx = mana2.swx - 25;
+      triangleShoot2 = true;
+    }
+
+    spaceKeyIsDown2 = true;
+      }
+
       break;
 
       case Z2:
@@ -464,12 +477,261 @@ function drawPlayGame()
    }
    }
  }
+
+ // triangle attackes
+
+ function triangleFire()
+ {
+
+ if (spaceKeyIsDown){
+   mana.swx = mana.swx- 25;
+   var missile = {
+     width: 12,
+     height:12,
+     sx: 138,
+     sy: 0,
+     swx: 12,
+     swy: 12,
+     vx:0,
+     vy:0,
+     x:  P1.x + 19,
+     y: P1.y +  19,
+     dmg: 10
+   }
+
+   var missile2 = {
+     width: 12,
+     height:12,
+     sx: 138,
+     sy: 0,
+     swx: 12,
+     swy: 12,
+     vx:0,
+     vy:0,
+     x: P1.x + 19,
+     y: P1.y + 19,
+     dmg: 10
+   }
+
+   var missile3 = {
+     width: 12,
+     height:12,
+     sx: 138,
+     sy: 0,
+     swx: 12,
+     swy: 12,
+     vx:0,
+     vy:0,
+     x: P1.x + 19,
+     y: P1.y + 19,
+     dmg: 10
+   }
+
+   if (moveLeft){
+     missile.vx = -14;
+     missile2.vx = -14;
+     missile2.vy = 3;
+     missile3.vx = -14;
+     missile3.vy = -3;
+   }
+   if (moveRight){
+       missile.vx = 14;
+       missile2.vx = 14;
+       missile2.vy = -3;
+       missile3.vx = 14;
+       missile3.vy = 3;
+   }
+   if (moveUp){
+     missile.vy = -14;
+     missile2.vx = 3;
+     missile2.vy = -14;
+     missile3.vx = -3;
+     missile3.vy = -14;
+   }
+   if (moveDown){
+   missile.vy = 14;
+   missile2.vx = -3;
+   missile2.vy = 14;
+   missile3.vx = 3;
+   missile3.vy = 14;
+ }
+ }
+ // line sp attack
+
+ if(zIsDown){
+mana.swx = mana.swx - 75;
+if (moveRight){
+  triangle.x = triangle.x + 150;
+}
+
+if (moveLeft){
+  triangle.x = triangle.x - 150;
+}
+
+if (moveUp){
+  triangle.y = triangle.y - 150;
+}
+
+if (moveDown){
+  triangle.y = triangle.y + 150;
+}
+
+
+ }
+ if (spaceKeyIsDown)
+ {
+   sprites.push(missile);
+   missiles.push(missile);
+   sprites.push(missile2);
+   missiles.push(missile2);
+   sprites.push(missile3);
+   missiles.push(missile3);
+ }
+
+ if(xIsDown && player2){
+if (P2.x < 400){
+P1.x = P2.x - 50;
+}
+if (P2.x >= 400){
+P1.x = P2.x + 50;
+}
+
+P1.y = P2.y;
+
+
+}
+ }
+
+ // triangle 2 attacks
+
+ function triangleFire2()
+ {
+ if (spaceKeyIsDown2){
+
+   var missile = {
+     width: 12,
+     height:12,
+     sx: 138,
+     sy: 0,
+     swx: 12,
+     swy: 12,
+     vx:0,
+     vy:0,
+     x:  P2.x + 19,
+     y: P2.y +  19,
+     dmg: 10
+   }
+
+   var missile2 = {
+     width: 12,
+     height:12,
+     sx: 138,
+     sy: 0,
+     swx: 12,
+     swy: 12,
+     vx:0,
+     vy:0,
+     x: P2.x + 19,
+     y: P2.y + 19,
+     dmg: 10
+   }
+
+   var missile3 = {
+     width: 12,
+     height:12,
+     sx: 138,
+     sy: 0,
+     swx: 12,
+     swy: 12,
+     vx:0,
+     vy:0,
+     x: P2.x + 19,
+     y: P2.y + 19,
+     dmg: 10
+   }
+
+   if (moveLeft2){
+     missile.vx = -14;
+     missile2.vx = -14;
+     missile2.vy = 3;
+     missile3.vx = -14;
+     missile3.vy = -3;
+   }
+   if (moveRight2){
+       missile.vx = 14;
+       missile2.vx = 14;
+       missile2.vy = -3;
+       missile3.vx = 14;
+       missile3.vy = 3;
+   }
+   if (moveUp2){
+     missile.vy = -14;
+     missile2.vx = 3;
+     missile2.vy = -14;
+     missile3.vx = -3;
+     missile3.vy = -14;
+   }
+   if (moveDown2){
+   missile.vy = 14;
+   missile2.vx = -3;
+   missile2.vy = 14;
+   missile3.vx = 3;
+   missile3.vy = 14;
+ }
+ }
+ // line sp attack
+
+ if(zIsDown){
+mana.swx = mana.swx - 75;
+if (moveRight){
+  triangle.x = triangle.x + 150;
+}
+
+if (moveLeft){
+  triangle.x = triangle.x - 150;
+}
+
+if (moveUp){
+  triangle.y = triangle.y - 150;
+}
+
+if (moveDown){
+  triangle.y = triangle.y + 150;
+}
+
+
+ }
+ if (spaceKeyIsDown2)
+ {
+   sprites.push(missile);
+   missiles2.push(missile);
+   sprites.push(missile2);
+   missiles2.push(missile2);
+   sprites.push(missile3);
+   missiles2.push(missile3);
+ }
+
+ if(xIsDown && player2){
+if (P2.x < 400){
+P1.x = P2.x - 50;
+}
+if (P2.x >= 400){
+P1.x = P2.x + 50;
+}
+
+P1.y = P2.y;
+
+
+}
+ }
+
 // function that shoots out the lines attack
 
  function lineFire()
  {
 
  if (spaceKeyIsDown){
+       mana.swx = mana.swx - 25;
    var missile = {
      width: 12,
      height:12,
@@ -485,23 +747,23 @@ function drawPlayGame()
    }
 
    if (moveLeft){
-     missile.x = line.x - 12;
+     missile.x = line.x;
      missile.y = line.y +  19;
      missile.vx = -14;
    }
    if (moveRight){
-     missile.x = line.x + 10;
+     missile.x = line.x;
      missile.y = line.y +  19;
        missile.vx = 14;
    }
    if (moveUp){
      missile.x = line.x - 1;
-     missile.y = line.y - 12;
+     missile.y = line.y;
      missile.vy = -14;
    }
    if (moveDown){
      missile.x = line.x - 1;
-     missile.y = line.y + 50;
+     missile.y = line.y + 38;
    missile.vy = 14;
  }
  }
