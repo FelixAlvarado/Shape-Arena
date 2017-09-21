@@ -150,7 +150,7 @@ function keyDown(){
 
       case SPACE:
 
-      if (!moveDown && !moveUp && !moveLeft && !moveRight)
+      if (!moveDown && !moveUp && !moveLeft && !moveRight && P1 != square)
       {
         break;
       }
@@ -161,9 +161,8 @@ function keyDown(){
       }
       if (mana.swx >= 25 && P1 == triangle){
         triangleShoot = true;
-
-
       }
+
         spaceKeyIsDown = true;
 
 
@@ -444,10 +443,28 @@ function drawPlayGame()
        {
          var sprite = sprites[i];
 
+         if (sprite == square && spaceKeyIsDown && mana.swx > 0){
+           drawingSurface.save();
 
+           drawingSurface.translate(
+             Math.floor(P1.x + (P1.width / 2)),
+             Math.floor(P1.y + (sprite.width / 2))
+           );
+
+           drawingSurface.rotate(P1.rotation*Math.PI / 180);
+
+            drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, Math.floor(-sprite.width / 2), Math.floor(-sprite.height / 2), sprite.width, sprite.height);
+
+         }
+
+         else{
          drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, sprite.x, sprite.y, sprite.swx, sprite.swy);
-       }
+}
 
+         if (sprite == square && spaceKeyIsDown && mana.swx > 0){
+           drawingSurface.restore();
+       }
+     }
      }
 
      if(player2) {
@@ -477,6 +494,20 @@ function drawPlayGame()
    }
    }
  }
+ //square attacks
+
+function squareFire(){
+if(spaceKeyIsDown && mana.swx > 0){
+  P1.rotation = P1.rotation + 20
+  P1.vx = P1.vx*1.5;
+  P1.vy = P1.vy*1.5;
+  mana.swx = mana.swx - 2;
+  if(collision(P1,P2) && mana.swx > 0){
+    health2.swx = health2.swx - 2;
+
+  }
+}
+}
 
  // triangle attackes
 

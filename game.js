@@ -187,7 +187,11 @@ if(triangleShoot){
   triangleShoot = false;
   }
 }
-
+if(spaceKeyIsDown || zIsDown || xIsDown){
+if(P1 == square){
+  squareFire();
+}
+}
 P1.x = Math.max(0, Math.min(P1.x + P1.vx, canvas.width - P1.width));
 P1.y = Math.max(0, Math.min(P1.y + P1.vy, canvas.height - P1.height));
 
@@ -238,6 +242,7 @@ if(triangleShoot2 && P2 == triangle2)
   triangleFire2();
   triangleShoot2 = false;
 }
+
 
 P2.x = Math.max(0, Math.min(P2.x + P2.vx, canvas.width - P2.width));
 P2.y = Math.max(0, Math.min(P2.y + P2.vy, canvas.height - P2.height));

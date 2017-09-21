@@ -195,6 +195,13 @@ function characterSelect()
     yellowRemove();
   }
 
+    if (yellowLeft.x > 402.1 && yellowLeft.x < 402.99){
+    P1 = square;
+    sprites.push(square);
+    yellowRemove();
+  }
+
+
     if (!player2){
       line2.x = line2.x + 500;
     }
@@ -204,13 +211,17 @@ function characterSelect()
     gameState = PLAYING;
   }
 }
-    if (!player2 && yellowLeft.x > 292.49 && yellowLeft.x < 292.51 && gameState == CHARACTERSELECT && play){
-      gameState = PLAYING;
-    }
 
-    if (!player2 && yellowLeft.x > 347.49 && yellowLeft.x < 347.51 && gameState == CHARACTERSELECT && play){
-      gameState = PLAYING;
-    }
+if (!player2 &&  gameState == CHARACTERSELECT && play){
+  gameState = PLAYING;
+}
+    // if (!player2 && yellowLeft.x > 292.49 && yellowLeft.x < 292.51 && gameState == CHARACTERSELECT && play){
+    //   gameState = PLAYING;
+    // }
+
+    // if (!player2 && yellowLeft.x > 347.49 && yellowLeft.x < 347.51 && gameState == CHARACTERSELECT && play){
+    //   gameState = PLAYING;
+    // }
 }
       break;
 
