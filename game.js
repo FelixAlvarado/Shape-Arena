@@ -118,6 +118,7 @@ var moveRight2 = false;
 var moveLeft2 = false;
 var moveUp2 = false;
 var moveDown2 = false;
+var squareHit = false;
 
 
 

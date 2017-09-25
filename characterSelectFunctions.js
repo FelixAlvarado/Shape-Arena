@@ -35,7 +35,7 @@ title.font = "25pt Arial";
 title.fillText("Dr. Square", 200, 225);
 title.font = "15pt Arial";
 title.fillText("Skill 1: Super Spin", 200, 345);
-title.fillText("Skill 2: Speed Swipe", 200, 365);
+title.fillText("Skill 2: Shooting Star", 200, 365);
 title.fillText("Skill 3: Reflect", 200, 385);
 }
 
@@ -78,7 +78,7 @@ if (player2){
   title.fillText("Dr. Square", 600, 225);
   title.font = "15pt Arial";
   title.fillText("Skill 1: Super Spin", 600, 345);
-  title.fillText("Skill 2: Speed Swipe", 600, 365);
+  title.fillText("Skill 2: Shooting Star", 600, 365);
   title.fillText("Skill 3: Reflect", 600, 385);
   }
 

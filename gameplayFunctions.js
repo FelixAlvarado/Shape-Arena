@@ -173,7 +173,7 @@ function keyDown(){
 
       case Z:
 
-      if (!moveDown && !moveUp && !moveLeft && !moveRight)
+      if (!moveDown && !moveUp && !moveLeft && !moveRight && P1 != square)
       {
         break;
       }
@@ -187,6 +187,11 @@ function keyDown(){
       triangleShoot = true;
     }
         zIsDown = true;
+
+        if(P1 == square){
+          squareHit = true;
+        }
+
 
       }
       break;
@@ -350,6 +355,7 @@ window.addEventListener("keyup", function (event)
 
     case Z:
     zIsDown = false;
+    squareHit = false;
     break;
 
     case X:
@@ -443,7 +449,8 @@ function drawPlayGame()
        {
          var sprite = sprites[i];
 
-         if (sprite == square && spaceKeyIsDown && mana.swx > 0){
+         if (spaceKeyIsDown || zIsDown){
+         if (sprite == square && mana.swx > 0){
            drawingSurface.save();
 
            drawingSurface.translate(
@@ -456,14 +463,18 @@ function drawPlayGame()
             drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, Math.floor(-sprite.width / 2), Math.floor(-sprite.height / 2), sprite.width, sprite.height);
 
          }
-
          else{
          drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, sprite.x, sprite.y, sprite.swx, sprite.swy);
 }
-
-         if (sprite == square && spaceKeyIsDown && mana.swx > 0){
+       }
+         else{
+         drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, sprite.x, sprite.y, sprite.swx, sprite.swy);
+}
+    if(spaceKeyIsDown || zIsDown){
+         if (sprite == square && mana.swx > 0){
            drawingSurface.restore();
        }
+     }
      }
      }
 
@@ -498,13 +509,28 @@ function drawPlayGame()
 
 function squareFire(){
 if(spaceKeyIsDown && mana.swx > 0){
-  P1.rotation = P1.rotation + 20
+  P1.rotation = P1.rotation + 20;
   P1.vx = P1.vx*1.5;
   P1.vy = P1.vy*1.5;
   mana.swx = mana.swx - 2;
+  if (player2){
   if(collision(P1,P2) && mana.swx > 0){
     health2.swx = health2.swx - 2;
+}
+  }
+}
 
+if(zIsDown && mana.swx > 0){
+  P1.rotation = P1.rotation + 40;
+  P1.vx = P1.vx*2.5;
+  P1.vy = P1.vy*2.5;
+  mana.swx = mana.swx - 4;
+  if (player2){
+  if(collision(P1,P2) && mana.swx > 0 && squareHit){
+    health2.swx = health2.swx - 30;
+    health.swx = health.swx - 15;
+    squareHit = false;
+}
   }
 }
 }
