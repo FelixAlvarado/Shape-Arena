@@ -119,6 +119,7 @@ var moveLeft2 = false;
 var moveUp2 = false;
 var moveDown2 = false;
 var squareHit = false;
+var reflect = false;
 
 
 
@@ -278,7 +279,7 @@ if (player2){
 
 }
 
-//moveMissile
+//moveMissile2
 for(var i = 0; i < missiles2.length; i++)
 {
   var missile = missiles2[i];
@@ -288,10 +289,15 @@ for(var i = 0; i < missiles2.length; i++)
   if(missile.x < -missile.width || missile.x > canvas.width || missile.y < -missile.height || missile.y > canvas.height){
     removeObject(missile, missiles2);
     removeObject(missile,sprites);
-    i--;
+     i--;
+  }
+  if (collision(missile, P1) && reflect){
+    missile.vx = -missile.vx;
+    missile.vy = -missile.vy;
+    missile.reflect = true;
   }
 
-  if(collision(missile, P1)){
+  if(collision(missile, P1) && !reflect){
     removeObject(missile, missiles2);
     removeObject(missile,sprites);
     health.swx = health.swx - missile.dmg;
@@ -299,11 +305,20 @@ for(var i = 0; i < missiles2.length; i++)
     if(health.swx <= 0){
       gameState = OVER;
     }
+  }
+
+    if(collision(missile, P2) && missile.reflect){
+      removeObject(missile, missiles2);
+      removeObject(missile,sprites);
+      health2.swx = health2.swx - missile.dmg;
+      i--;
+      if(health2.swx <= 0){
+        gameState = OVER;
+      }
 
   }
 
 }
-
 }
 setInterval(manaIncrease, 40);
 

@@ -84,10 +84,10 @@ function collision(x,y){
 //removes red selecter during 2  player character select
 function redRemove(){
   if (player2){
-  redLeft.x = -100;
-  redBottom.x = -100;
-  redTop.x = -100;
-  redRight.x = -100;
+  redLeft.y = -100;
+  redBottom.y = -100;
+  redTop.y = -100;
+  redRight.y = -100;
 }
 }
 
@@ -96,10 +96,10 @@ function redRemove(){
 //removes yellow selecter during 2  player character select
 function yellowRemove(){
   if (player2){
-  yellowLeft.x = -100;
-  yellowBottom.x = -100;
-  yellowTop.x = -100;
-  yellowRight.x = -100;
+  yellowLeft.y = -100;
+  yellowBottom.y = -100;
+  yellowTop.y = -100;
+  yellowRight.y = -100;
 }
 }
 
@@ -191,6 +191,11 @@ function keyDown(){
         if(P1 == square){
           squareHit = true;
         }
+        if (player2){
+          if (collision(P1,P2)){
+            squareHit = false;
+          }
+        }
 
 
       }
@@ -211,6 +216,7 @@ function keyDown(){
         xIsDown = true;
 
       }
+
       break;
 
       case LEFT2:
@@ -265,10 +271,6 @@ function keyDown(){
 
       case Z2:
       if (player2){
-      if (mana2.swx < 50)
-      {
-        break;
-      }
       if (!moveDown2 && !moveUp2 && !moveLeft2 && !moveRight2)
       {
         break;
@@ -276,8 +278,11 @@ function keyDown(){
       if(!zIsDown2)
       {
         // mana2.swx = mana2.swx - 75;
+        if (P2 == line2 && mana2.swx >= 50){
         lineShoot2 = true;
+      }
         zIsDown2 = true;
+        triangleShoot2 = true;
 
       }
     }
@@ -285,15 +290,17 @@ function keyDown(){
 
       case X2:
       if (player2) {
-      if (mana2.swx < 50)
-      {
-        break;
-      }
       if (!xIsDown2)
       {
-        mana2.swx = mana2.swx - 50;
+        if (mana2.swx >= 50 && P2 == line2){
         lineShoot2 = true;
+        mana2.swx = mana2.swx - 50;
+      }
         xIsDown2 = true;
+        if (mana2.swx >= 100 && P2 == triangle2){
+          mana2.swx = mana2.swx - 100;
+          triangleShoot2 = true;
+        }
       }
     }
     break;
@@ -360,6 +367,7 @@ window.addEventListener("keyup", function (event)
 
     case X:
     xIsDown = false;
+    reflect = false;
     break;
 
     case LEFT2:
@@ -449,7 +457,7 @@ function drawPlayGame()
        {
          var sprite = sprites[i];
 
-         if (spaceKeyIsDown || zIsDown){
+         if (spaceKeyIsDown || zIsDown || xIsDown){
          if (sprite == square && mana.swx > 0){
            drawingSurface.save();
 
@@ -470,7 +478,7 @@ function drawPlayGame()
          else{
          drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, sprite.x, sprite.y, sprite.swx, sprite.swy);
 }
-    if(spaceKeyIsDown || zIsDown){
+    if(spaceKeyIsDown || zIsDown || xIsDown){
          if (sprite == square && mana.swx > 0){
            drawingSurface.restore();
        }
@@ -527,12 +535,23 @@ if(zIsDown && mana.swx > 0){
   mana.swx = mana.swx - 4;
   if (player2){
   if(collision(P1,P2) && mana.swx > 0 && squareHit){
-    health2.swx = health2.swx - 30;
-    health.swx = health.swx - 15;
+    health2.swx = health2.swx - 45;
     squareHit = false;
 }
   }
 }
+
+if(xIsDown && mana.swx > 0){
+  P1.rotation = P1.rotation + 30;
+  P1.vx = 0;
+  P1.vy = 0;
+  mana.swx = mana.swx - 3;
+  if (player2){
+    reflect = true;
+  }
+}
+
+
 }
 
  // triangle attackes
@@ -553,7 +572,8 @@ if(zIsDown && mana.swx > 0){
      vy:0,
      x:  P1.x + 19,
      y: P1.y +  19,
-     dmg: 10
+     dmg: 10,
+     reflect: false
    }
 
    var missile2 = {
@@ -567,7 +587,8 @@ if(zIsDown && mana.swx > 0){
      vy:0,
      x: P1.x + 19,
      y: P1.y + 19,
-     dmg: 10
+     dmg: 10,
+     reflect: false
    }
 
    var missile3 = {
@@ -581,7 +602,8 @@ if(zIsDown && mana.swx > 0){
      vy:0,
      x: P1.x + 19,
      y: P1.y + 19,
-     dmg: 10
+     dmg: 10,
+     reflect: false
    }
 
    if (moveLeft){
@@ -736,24 +758,26 @@ P1.y = P2.y;
    missile3.vy = 14;
  }
  }
- // line sp attack
+ // triagle2 sp attack
 
- if(zIsDown){
-mana.swx = mana.swx - 75;
-if (moveRight){
-  triangle.x = triangle.x + 150;
+ if(zIsDown2){
+   if (mana2.swx >= 75){
+mana2.swx = mana2.swx - 75;
+if (moveRight2){
+  triangle2.x = triangle2.x + 150;
 }
 
-if (moveLeft){
-  triangle.x = triangle.x - 150;
+if (moveLeft2){
+  triangle2.x = triangle2.x - 150;
 }
 
-if (moveUp){
-  triangle.y = triangle.y - 150;
+if (moveUp2){
+  triangle2.y = triangle2.y - 150;
 }
 
-if (moveDown){
-  triangle.y = triangle.y + 150;
+if (moveDown2){
+  triangle2.y = triangle2.y + 150;
+}
 }
 
 
@@ -768,15 +792,15 @@ if (moveDown){
    missiles2.push(missile3);
  }
 
- if(xIsDown && player2){
-if (P2.x < 400){
-P1.x = P2.x - 50;
+ if(xIsDown2 && player2){
+if (P1.x < 400){
+P2.x = P1.x - 50;
 }
-if (P2.x >= 400){
-P1.x = P2.x + 50;
+if (P1.x >= 400){
+P2.x = P1.x + 50;
 }
 
-P1.y = P2.y;
+P2.y = P1.y;
 
 
 }
@@ -987,7 +1011,8 @@ P1.y = P2.y;
        vy:0,
        x: 0,
        y: 0,
-       dmg: 15
+       dmg: 15,
+       reflect: false
      }
 
      if (moveLeft2){
@@ -1026,7 +1051,8 @@ P1.y = P2.y;
        vy:0,
        x: 0,
        y: 0,
-       dmg: 30
+       dmg: 30,
+       reflect: false
      }
 
      if (moveLeft2 && !moveDown2 && !moveUp2){
@@ -1097,7 +1123,8 @@ P1.y = P2.y;
      vy:-21,
      x: line2.x,
      y: line2.y,
-     dmg: 30
+     dmg: 30,
+     reflect: false
    }
 
    var missileDown2 = {
@@ -1111,7 +1138,8 @@ P1.y = P2.y;
      vy:21,
      x: line2.x,
      y: line2.y,
-     dmg: 30
+     dmg: 30,
+     reflect: false
    }
 
    var missileRight2 = {
@@ -1125,7 +1153,8 @@ P1.y = P2.y;
      vy:0,
      x: line2.x - 25,
      y: line2.y + 20,
-     dmg: 30
+     dmg: 30,
+     reflect: false
    }
 
    var missileLeft2 = {
@@ -1139,7 +1168,8 @@ P1.y = P2.y;
      vy:0,
      x: line2.x - 25,
      y: line2.y + 20,
-     dmg: 30
+     dmg: 30,
+     reflect: false
    }
 
 
