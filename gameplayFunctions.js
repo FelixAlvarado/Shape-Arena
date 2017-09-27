@@ -246,7 +246,7 @@ function keyDown(){
       case SPACE2:
 
 
-      if (!moveDown2 && !moveUp2 && !moveLeft2 && !moveRight2)
+      if (!moveDown2 && !moveUp2 && !moveLeft2 && !moveRight2 && P2 != square2)
       {
 
         break;
@@ -271,7 +271,7 @@ function keyDown(){
 
       case Z2:
       if (player2){
-      if (!moveDown2 && !moveUp2 && !moveLeft2 && !moveRight2)
+      if (!moveDown2 && !moveUp2 && !moveLeft2 && !moveRight2 && P2 != square2)
       {
         break;
       }
@@ -283,6 +283,14 @@ function keyDown(){
       }
         zIsDown2 = true;
         triangleShoot2 = true;
+        if(P2 == square2){
+          squareHit2 = true;
+        }
+        if (player2){
+          if (collision(P1,P2)){
+            squareHit2 = false;
+          }
+        }
 
       }
     }
@@ -457,16 +465,17 @@ function drawPlayGame()
        {
          var sprite = sprites[i];
 
-         if (spaceKeyIsDown || zIsDown || xIsDown){
-         if (sprite == square && mana.swx > 0){
+         if (spaceKeyIsDown || zIsDown || xIsDown || spaceKeyIsDown2 || zIsDown2 || xIsDown2){
+
+         if ((sprite == square && mana.swx > 0) || (sprite == square2 && mana2.swx > 0)){
            drawingSurface.save();
 
            drawingSurface.translate(
-             Math.floor(P1.x + (P1.width / 2)),
-             Math.floor(P1.y + (sprite.width / 2))
+             Math.floor(sprite.x + (sprite.width / 2)),
+             Math.floor(sprite.y + (sprite.width / 2))
            );
 
-           drawingSurface.rotate(P1.rotation*Math.PI / 180);
+           drawingSurface.rotate(sprite.rotation*Math.PI / 180);
 
             drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, Math.floor(-sprite.width / 2), Math.floor(-sprite.height / 2), sprite.width, sprite.height);
 
@@ -478,8 +487,8 @@ function drawPlayGame()
          else{
          drawingSurface.drawImage(image, sprite.sx, sprite.sy, sprite.swx, sprite.swy, sprite.x, sprite.y, sprite.swx, sprite.swy);
 }
-    if(spaceKeyIsDown || zIsDown || xIsDown){
-         if (sprite == square && mana.swx > 0){
+    if(spaceKeyIsDown || zIsDown || xIsDown || spaceKeyIsDown2 || zIsDown2 || xIsDown2){
+         if ((sprite == square && mana.swx > 0) || (sprite == square2 && mana2.swx > 0)){
            drawingSurface.restore();
        }
      }
@@ -513,6 +522,47 @@ function drawPlayGame()
    }
    }
  }
+
+ //square attacks
+
+function squareFire2(){
+if(spaceKeyIsDown2 && mana2.swx > 0){
+  P2.rotation = P2.rotation + 20;
+  P2.vx = P2.vx*1.5;
+  P2.vy = P2.vy*1.5;
+  mana2.swx = mana2.swx - 2;
+  if (player2){
+  if(collision(P1,P2) && mana2.swx > 0){
+    health.swx = health.swx - 2;
+}
+  }
+}
+
+if(zIsDown2 && mana2.swx > 0){
+  P2.rotation = P2.rotation + 40;
+  P2.vx = P2.vx*2.5;
+  P2.vy = P2.vy*2.5;
+  mana2.swx = mana2.swx - 4;
+  if (player2){
+  if(collision(P1,P2) && mana2.swx > 0 && squareHit2){
+    health.swx = health.swx - 45;
+    squareHit2 = false;
+}
+  }
+}
+
+if(xIsDown2 && mana2.swx > 0){
+  P2.rotation = P2.rotation + 30;
+  P2.vx = 0;
+  P2.vy = 0;
+  mana2.swx = mana2.swx - 3;
+  if (player2){
+    reflect2 = true;
+  }
+}
+
+
+}
  //square attacks
 
 function squareFire(){
@@ -698,7 +748,8 @@ P1.y = P2.y;
      vy:0,
      x:  P2.x + 19,
      y: P2.y +  19,
-     dmg: 10
+     dmg: 10,
+     reflect: false
    }
 
    var missile2 = {
@@ -712,7 +763,8 @@ P1.y = P2.y;
      vy:0,
      x: P2.x + 19,
      y: P2.y + 19,
-     dmg: 10
+     dmg: 10,
+     reflect: false
    }
 
    var missile3 = {
@@ -726,7 +778,8 @@ P1.y = P2.y;
      vy:0,
      x: P2.x + 19,
      y: P2.y + 19,
-     dmg: 10
+     dmg: 10,
+     reflect: false
    }
 
    if (moveLeft2){
@@ -824,7 +877,8 @@ P2.y = P1.y;
      vy:0,
      x: 0,
      y: 0,
-     dmg: 15
+     dmg: 15,
+     reflect: false
    }
 
    if (moveLeft){
@@ -862,7 +916,8 @@ P2.y = P1.y;
      vy:0,
      x: 0,
      y: 0,
-     dmg: 30
+     dmg: 30,
+     reflect: false
    }
 
    if (moveLeft && !moveDown && !moveUp){
@@ -933,7 +988,8 @@ P2.y = P1.y;
    vy:-21,
    x: line.x,
    y: line.y,
-   dmg: 30
+   dmg: 30,
+   reflect: false
  }
 
  var missileDown = {
@@ -947,7 +1003,8 @@ P2.y = P1.y;
    vy:21,
    x: line.x,
    y: line.y,
-   dmg: 30
+   dmg: 30,
+   reflect: false
  }
 
  var missileRight = {
@@ -961,7 +1018,8 @@ P2.y = P1.y;
    vy:0,
    x: line.x - 25,
    y: line.y + 20,
-   dmg: 30
+   dmg: 30,
+   reflect: false
  }
 
  var missileLeft = {
@@ -975,7 +1033,8 @@ P2.y = P1.y;
    vy:0,
    x: line.x - 25,
    y: line.y + 20,
-   dmg: 30
+   dmg: 30,
+   reflect: false
  }
 
 

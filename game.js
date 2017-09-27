@@ -120,6 +120,8 @@ var moveUp2 = false;
 var moveDown2 = false;
 var squareHit = false;
 var reflect = false;
+var squareHit2 = false;
+var reflect2 = false;
 
 
 
@@ -244,7 +246,11 @@ if(triangleShoot2 && P2 == triangle2)
   triangleFire2();
   triangleShoot2 = false;
 }
-
+if(spaceKeyIsDown2 || zIsDown2 || xIsDown2){
+if(P2 == square2){
+  squareFire2();
+}
+}
 
 P2.x = Math.max(0, Math.min(P2.x + P2.vx, canvas.width - P2.width));
 P2.y = Math.max(0, Math.min(P2.y + P2.vy, canvas.height - P2.height));
@@ -263,7 +269,12 @@ for(var i = 0; i < missiles.length; i++)
     i--;
   }
 if (player2){
-  if(collision(missile, P2)){
+  if (collision(missile, P2) && reflect2){
+    missile.vx = -missile.vx;
+    missile.vy = -missile.vy;
+    missile.reflect = true;
+  }
+  if(collision(missile, P2) && !reflect2){
     removeObject(missile, missiles);
     removeObject(missile,sprites);
     health2.swx = health2.swx - missile.dmg;
@@ -273,6 +284,17 @@ if (player2){
     }
 
   }
+
+  if(collision(missile, P1) && missile.reflect){
+    removeObject(missile, missiles);
+    removeObject(missile,sprites);
+    health.swx = health.swx - missile.dmg;
+    i--;
+    if(health.swx <= 0){
+      gameState = OVER;
+    }
+
+}
 }
 
 

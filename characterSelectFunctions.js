@@ -355,6 +355,10 @@ if (!player2 &&  gameState == CHARACTERSELECT && play){
       P2 = triangle2;
       redRemove();
     }
+    if (redLeft.x > 402.1 && redLeft.x < 402.99){
+    P2 = square2;
+    redRemove();
+  }
       if (P1 != null){
       gameState = PLAYING;
     }

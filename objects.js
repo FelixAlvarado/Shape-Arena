@@ -69,6 +69,21 @@ y: 250,
 rotation: 0
 }
 
+var square2 =
+{
+width: 50,
+height: 50,
+sx: 200,
+sy: 0,
+swx: 50,
+swy: 50,
+vx:0,
+vy:0,
+x: 700,
+y: 250,
+rotation: 0
+}
+
 var mana =
 {
   width: 250,
