@@ -162,6 +162,9 @@ function keyDown(){
       if (mana.swx >= 25 && P1 == triangle){
         triangleShoot = true;
       }
+      if (mana.swx >= 30 && P1 == circle){
+        circleShoot = true;
+      }
 
         spaceKeyIsDown = true;
 
@@ -523,6 +526,43 @@ function drawPlayGame()
    }
  }
 
+// circle attacks
+function circleFire() {
+  if (spaceKeyIsDown){
+        mana.swx = mana.swx - 30;
+    var missile = {
+      width: 12,
+      height:12,
+      sx: 138,
+      sy: 38,
+      swx: 12,
+      swy: 12,
+      vx:0,
+      vy:0,
+      x: P1.x + 19,
+      y: P1.y + 19,
+      dmg: 20,
+      reflect: false
+    }
+
+    if (moveLeft){
+      missile.vx = -21;
+    }
+    if (moveRight){
+        missile.vx = 21;
+    }
+    if (moveUp){
+      missile.vy = -21;
+    }
+    if (moveDown){
+    missile.vy = 21;
+  }
+  sprites.push(missile);
+  missiles.push(missile);
+  }
+
+
+}
  //square attacks
 
 function squareFire2(){

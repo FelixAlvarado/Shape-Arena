@@ -84,6 +84,20 @@ y: 250,
 rotation: 0
 }
 
+var circle =
+{
+width: 50,
+height: 50,
+sx: 0,
+sy: 50,
+swx: 50,
+swy: 50,
+vx:0,
+vy:0,
+x: 100,
+y: 250,
+}
+
 var mana =
 {
   width: 250,
@@ -357,7 +371,7 @@ var select1 = {
   swy: 12,
   vx:0,
   vy:0,
-  x: 350,
+  x: 285,
   y: 275,
 }
 
@@ -396,7 +410,7 @@ var select2 = {
   swy: 12,
   vx:0,
   vy:0,
-  x: 440,
+  x: 505,
   y: 275,
 }
 

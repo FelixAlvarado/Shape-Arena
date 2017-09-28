@@ -122,6 +122,7 @@ var squareHit = false;
 var reflect = false;
 var squareHit2 = false;
 var reflect2 = false;
+var circleShoot = false;
 
 
 
@@ -189,6 +190,13 @@ if(triangleShoot){
   if (P1 == triangle){
   triangleFire();
   triangleShoot = false;
+  }
+}
+
+if(circleShoot){
+  if (P1 == circle){
+  circleFire();
+  circleShoot = false;
   }
 }
 if(spaceKeyIsDown || zIsDown || xIsDown){

@@ -201,6 +201,12 @@ function characterSelect()
     yellowRemove();
   }
 
+  if (yellowLeft.x > 457.1 && yellowLeft.x < 457.99){
+  P1 = circle;
+  sprites.push(circle);
+  yellowRemove();
+}
+
 
     if (!player2){
       line2.x = line2.x + 500;

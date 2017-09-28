@@ -5,7 +5,7 @@ if (gameState == MODESELECT)
 {
   title.font = "40pt Arial";
   title.fillText("Shape Arena!!!", 400, 100);
-    title.fillText("1P", 400, 300);
+    title.fillText("Practice", 400, 300);
     title.fillText("2P", 400, 375);
 
     if(selectSprites.length !== 0)
@@ -36,6 +36,8 @@ function selectGame()
       if (select1.y == 350){
         select1.y = select1.y - 75;
         select2.y = select2.y - 75;
+        select1.x = select1.x - 65;
+        select2.x = select2.x + 65;
       }
 
       break;
@@ -44,6 +46,8 @@ function selectGame()
       if (select1.y == 275){
         select1.y = select1.y + 75;
         select2.y = select2.y + 75;
+        select1.x = select1.x + 65;
+        select2.x = select2.x - 65;
       }
       break;
 
