@@ -10,6 +10,7 @@ vx:0,
 vy:0,
 x: 100,
 y: 250,
+rotation: 0,
 }
 
 var line2 =
@@ -24,6 +25,7 @@ vx:0,
 vy:0,
 x: 700,
 y: 250,
+rotation: 0,
 }
 
 var triangle =
@@ -38,6 +40,7 @@ vx:0,
 vy:0,
 x: 100,
 y: 250,
+rotation: 0,
 }
 
 var triangle2 =
@@ -52,6 +55,7 @@ vx:0,
 vy:0,
 x: 700,
 y: 250,
+rotation: 0,
 }
 
 var square =
@@ -96,6 +100,7 @@ vx:0,
 vy:0,
 x: 100,
 y: 250,
+rotation: 0,
 }
 
 var mana =

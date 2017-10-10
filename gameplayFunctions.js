@@ -176,7 +176,7 @@ function keyDown(){
 
       case Z:
 
-      if (!moveDown && !moveUp && !moveLeft && !moveRight && P1 != square)
+      if (!moveDown && !moveUp && !moveLeft && !moveRight && P1 != square && P1 != circle)
       {
         break;
       }
@@ -188,6 +188,9 @@ function keyDown(){
 
       if (mana.swx >= 75 && P1 == triangle){
       triangleShoot = true;
+    }
+    if (mana.swx >= 75 && P1 == circle){
+      circleShoot = true;
     }
         zIsDown = true;
 
@@ -560,6 +563,25 @@ function circleFire() {
   sprites.push(missile);
   missiles.push(missile);
   }
+if (zIsDown){
+  mana.swx = mana.swx - 75;
+var clone = {
+  name: clone,
+  width: 50,
+  height: 50,
+  sx: 0,
+  sy: 50,
+  swx: 50,
+  swy: 50,
+  vx:0,
+  vy:0,
+  x: P1.x,
+  y: P1.y,
+  dmg: 30,
+}
+sprites.push(clone);
+missiles.push(clone);
+}
 
 
 }

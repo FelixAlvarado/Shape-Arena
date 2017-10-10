@@ -29,7 +29,7 @@ var manaSprites = [];
 var selectSprites = []
 var cSelectSprites = [];
 var pauseSprites = [];
-
+var clones = [];
 
 // sprites.push(line);
 manaSprites.push(health);
@@ -267,6 +267,7 @@ P2.y = Math.max(0, Math.min(P2.y + P2.vy, canvas.height - P2.height));
 //moveMissile
 for(var i = 0; i < missiles.length; i++)
 {
+  if (missiles[i].name == undefined){
   var missile = missiles[i];
   missile.x += missile.vx;
   missile.y += missile.vy;
@@ -304,11 +305,72 @@ if (player2){
 
 }
 }
+}
+if (missiles[i].name == clone){
+  var clone = missiles[i];
+  if(player2){
+    if(clone.x > P2.x){
+      clone.x -= 3;
+    }
+    if (clone.x < P2.x){
+      clone.x += 3;
+    }
 
+    if(clone.y > P2.y){
+        clone.y -= 3;
+    }
+    if (clone.y < P2.y){
+      clone.y += 3;
+    }
+    if(collision(clone, P2)){
+      removeObject(clone, missiles);
+      removeObject(clone,sprites);
+        health2.swx = health2.swx - clone.dmg;
+      if ((P2 == square2 && spaceKeyIsDown2) || (P2 == square2 && zIsDown2)){
+      health2.swx = health2.swx + clone.dmg;
+    }
+      i--;
+      if(health2.swx <= 0){
+        gameState = OVER;
+      }
 
-
+    }
+  }
+}
 }
 
+//move clones
+// for(var i = 0; i < clones.length; i++){
+//   var clone = clones[i];
+//   if(player2){
+//     if(clone.x > P2.x){
+//       clone.x -= 3;
+//     }
+//     if (clone.x < P2.x){
+//       clone.x += 3;
+//     }
+//
+//     if(clone.y > P2.y){
+//         clone.y -= 3;
+//     }
+//     if (clone.y < P2.y){
+//       clone.y += 3;
+//     }
+//     if(collision(clone, P2)){
+//       removeObject(clone, clones);
+//       removeObject(clone,sprites);
+//         health2.swx = health2.swx - clone.dmg;
+//       if ((P2 == square2 && spaceKeyIsDown2) || (P2 == square2 && zIsDown2)){
+//       health2.swx = health2.swx + clone.dmg;
+//     }
+//       i--;
+//       if(health2.swx <= 0){
+//         gameState = OVER;
+//       }
+//
+//     }
+//   }
+// }
 //moveMissile2
 for(var i = 0; i < missiles2.length; i++)
 {
