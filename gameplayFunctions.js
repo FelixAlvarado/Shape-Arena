@@ -534,6 +534,7 @@ function circleFire() {
   if (spaceKeyIsDown){
         mana.swx = mana.swx - 30;
     var missile = {
+      name: undefined,
       width: 12,
       height:12,
       sx: 138,
@@ -580,7 +581,7 @@ var clone = {
   dmg: 30,
 }
 sprites.push(clone);
-missiles.push(clone);
+clones.push(clone);
 }
 
 

@@ -306,42 +306,9 @@ if (player2){
 }
 }
 }
-if (missiles[i].name == clone){
-  var clone = missiles[i];
-  if(player2){
-    if(clone.x > P2.x){
-      clone.x -= 3;
-    }
-    if (clone.x < P2.x){
-      clone.x += 3;
-    }
 
-    if(clone.y > P2.y){
-        clone.y -= 3;
-    }
-    if (clone.y < P2.y){
-      clone.y += 3;
-    }
-    if(collision(clone, P2)){
-      removeObject(clone, missiles);
-      removeObject(clone,sprites);
-        health2.swx = health2.swx - clone.dmg;
-      if ((P2 == square2 && spaceKeyIsDown2) || (P2 == square2 && zIsDown2)){
-      health2.swx = health2.swx + clone.dmg;
-    }
-      i--;
-      if(health2.swx <= 0){
-        gameState = OVER;
-      }
-
-    }
-  }
-}
-}
-
-//move clones
-// for(var i = 0; i < clones.length; i++){
-//   var clone = clones[i];
+// if (missiles[i].name == clone){
+//   var clone = missiles[i];
 //   if(player2){
 //     if(clone.x > P2.x){
 //       clone.x -= 3;
@@ -357,7 +324,7 @@ if (missiles[i].name == clone){
 //       clone.y += 3;
 //     }
 //     if(collision(clone, P2)){
-//       removeObject(clone, clones);
+//       removeObject(clone, missiles);
 //       removeObject(clone,sprites);
 //         health2.swx = health2.swx - clone.dmg;
 //       if ((P2 == square2 && spaceKeyIsDown2) || (P2 == square2 && zIsDown2)){
@@ -368,9 +335,43 @@ if (missiles[i].name == clone){
 //         gameState = OVER;
 //       }
 //
-//     }
+// }
 //   }
 // }
+}
+
+//move clones
+for(var i = 0; i < clones.length; i++){
+  var clone = clones[i];
+  if(player2){
+    if(clone.x > P2.x){
+      clone.x -= 3;
+    }
+    if (clone.x < P2.x){
+      clone.x += 3;
+    }
+
+    if(clone.y > P2.y){
+        clone.y -= 3;
+    }
+    if (clone.y < P2.y){
+      clone.y += 3;
+    }
+    if(collision(clone, P2)){
+      removeObject(clone, clones);
+      removeObject(clone,sprites);
+        health2.swx = health2.swx - clone.dmg;
+      if ((P2 == square2 && spaceKeyIsDown2) || (P2 == square2 && zIsDown2)){
+      health2.swx = health2.swx + clone.dmg;
+    }
+      i--;
+      if(health2.swx <= 0){
+        gameState = OVER;
+      }
+
+    }
+  }
+}
 //moveMissile2
 for(var i = 0; i < missiles2.length; i++)
 {
@@ -398,6 +399,29 @@ for(var i = 0; i < missiles2.length; i++)
       gameState = OVER;
     }
   }
+    // if(player2){
+    //   if(collision(missile, clone)){
+    //     removeObject(clone, clones);
+    //     removeObject(clone,sprites);
+    //     removeObject(missile, missiles2);
+    //     removeObject(missile,sprites);
+    //     i--;
+    //   }
+    // }
+
+// this is the problem block of code
+  for(var i = 0; i < clones.length; i++){
+    var clone = clones[i];
+    if(player2){
+      if(collision(missile, clone)){
+        removeObject(clone, clones);
+        removeObject(clone,sprites);
+        removeObject(missile, missiles2);
+        removeObject(missile,sprites);
+        i--;
+    }
+  }
+}
 
     if(collision(missile, P2) && missile.reflect){
       removeObject(missile, missiles2);
