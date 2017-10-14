@@ -30,6 +30,7 @@ var selectSprites = []
 var cSelectSprites = [];
 var pauseSprites = [];
 var clones = [];
+var walls = [];
 
 // sprites.push(line);
 manaSprites.push(health);
@@ -123,8 +124,8 @@ var reflect = false;
 var squareHit2 = false;
 var reflect2 = false;
 var circleShoot = false;
-
-
+var shield = false;
+var shieldOn= false;
 
 function removeObject(objectToRemove, array){
   var i = array.indexOf(objectToRemove);
@@ -267,7 +268,7 @@ P2.y = Math.max(0, Math.min(P2.y + P2.vy, canvas.height - P2.height));
 //moveMissile
 for(var i = 0; i < missiles.length; i++)
 {
-  if (missiles[i].name == undefined){
+
   var missile = missiles[i];
   missile.x += missile.vx;
   missile.y += missile.vy;
@@ -277,6 +278,7 @@ for(var i = 0; i < missiles.length; i++)
     removeObject(missile,sprites);
     i--;
   }
+
 if (player2){
   if (collision(missile, P2) && reflect2){
     missile.vx = -missile.vx;
@@ -304,40 +306,40 @@ if (player2){
     }
 
 }
-}
+
 }
 
-// if (missiles[i].name == clone){
-//   var clone = missiles[i];
-//   if(player2){
-//     if(clone.x > P2.x){
-//       clone.x -= 3;
-//     }
-//     if (clone.x < P2.x){
-//       clone.x += 3;
-//     }
-//
-//     if(clone.y > P2.y){
-//         clone.y -= 3;
-//     }
-//     if (clone.y < P2.y){
-//       clone.y += 3;
-//     }
-//     if(collision(clone, P2)){
-//       removeObject(clone, missiles);
-//       removeObject(clone,sprites);
-//         health2.swx = health2.swx - clone.dmg;
-//       if ((P2 == square2 && spaceKeyIsDown2) || (P2 == square2 && zIsDown2)){
-//       health2.swx = health2.swx + clone.dmg;
-//     }
-//       i--;
-//       if(health2.swx <= 0){
-//         gameState = OVER;
-//       }
-//
-// }
-//   }
-// }
+
+}
+//move walls
+for(var i = 0; i < walls.length; i++){
+  var wall = walls[i];
+  if(shield){
+    if (wall.name == 'left' || wall.name == 'top'){
+      wall.x = P1.x;
+      wall.y = P1.y;
+    }
+    if (wall.name == 'right'){
+      wall.x = P1.x + 45;
+      wall.y = P1.y;
+    }
+    if (wall.name == 'bottom'){
+      wall.x = P1.x;
+      wall.y = P1.y + 45;
+    }
+  }
+  if (!shield){
+    wall.x += wall.vx;
+    wall.y += wall.vy;
+    if(collision(wall, P2)){
+      removeObject(wall, walls);
+      removeObject(wall,sprites);
+      health2.swx = health2.swx - wall.dmg;
+      if(health2.swx <= 0){
+        gameState = OVER;
+      }
+      }
+  }
 }
 
 //move clones
@@ -357,6 +359,7 @@ for(var i = 0; i < clones.length; i++){
     if (clone.y < P2.y){
       clone.y += 3;
     }
+
     if(collision(clone, P2)){
       removeObject(clone, clones);
       removeObject(clone,sprites);
@@ -370,8 +373,11 @@ for(var i = 0; i < clones.length; i++){
       }
 
     }
+
   }
 }
+
+
 //moveMissile2
 for(var i = 0; i < missiles2.length; i++)
 {
@@ -399,29 +405,9 @@ for(var i = 0; i < missiles2.length; i++)
       gameState = OVER;
     }
   }
-    // if(player2){
-    //   if(collision(missile, clone)){
-    //     removeObject(clone, clones);
-    //     removeObject(clone,sprites);
-    //     removeObject(missile, missiles2);
-    //     removeObject(missile,sprites);
-    //     i--;
-    //   }
-    // }
 
-// this is the problem block of code
-  for(var i = 0; i < clones.length; i++){
-    var clone = clones[i];
-    if(player2){
-      if(collision(missile, clone)){
-        removeObject(clone, clones);
-        removeObject(clone,sprites);
-        removeObject(missile, missiles2);
-        removeObject(missile,sprites);
-        i--;
-    }
-  }
-}
+
+
 
     if(collision(missile, P2) && missile.reflect){
       removeObject(missile, missiles2);
@@ -434,8 +420,24 @@ for(var i = 0; i < missiles2.length; i++)
 
   }
 
+// making clone dissapear is hitting missile
+      for(var j = 0; j < clones.length; j++)
+      {
+        var clone = clones[j];
+          if(collision(missile, clone)){
+            removeObject(clone, clones);
+            removeObject(clone,sprites);
+            removeObject(missile, missiles2);
+            removeObject(missile,sprites);
+            j--;
+            i--;
+        }
+  }
+
+
 }
 }
+
 setInterval(manaIncrease, 40);
 
 

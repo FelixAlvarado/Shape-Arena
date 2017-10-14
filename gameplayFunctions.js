@@ -189,7 +189,7 @@ function keyDown(){
       if (mana.swx >= 75 && P1 == triangle){
       triangleShoot = true;
     }
-    if (mana.swx >= 75 && P1 == circle){
+    if (mana.swx >= 75 && P1 == circle && player2){
       circleShoot = true;
     }
         zIsDown = true;
@@ -219,6 +219,9 @@ function keyDown(){
         mana.swx = mana.swx - 100;
         triangleShoot = true;
       }
+    if (P1 == circle){
+      circleShoot = true;
+    }
         xIsDown = true;
 
       }
@@ -381,6 +384,9 @@ window.addEventListener("keyup", function (event)
 
     case X:
     xIsDown = false;
+    if (shield){
+      shieldOn = true;
+    }
     reflect = false;
     break;
 
@@ -584,7 +590,85 @@ sprites.push(clone);
 clones.push(clone);
 }
 
+if (xIsDown){
+  if (!shield && mana.swx >= 150){
+    mana.swx = mana.swx - 150;
+    shield = true;
+    var wallLeft = {
+      name: 'left',
+      width: 5,
+      height:50,
+      sx: 50,
+      sy: 50,
+      swx: 5,
+      swy: 50,
+      vx:-25,
+      vy:0,
+      x: P1.x,
+      y: P1.y,
+      dmg: 35,
+      reflect: false
+    }
+    var wallRight = {
+      name: 'right',
+      width: 5,
+      height:50,
+      sx: 50,
+      sy: 50,
+      swx: 5,
+      swy: 50,
+      vx: 25,
+      vy:0,
+      x: P1.x + 45,
+      y: P1.y,
+      dmg: 35,
+      reflect: false
+    }
+    var wallTop = {
+      name: 'top',
+      width: 50,
+      height:5,
+      sx: 100,
+      sy: 50,
+      swx: 50,
+      swy: 5,
+      vx: 0,
+      vy: -25,
+      x: P1.x,
+      y: P1.y,
+      dmg: 35,
+      reflect: false
+    }
+    var wallBottom = {
+      name: 'bottom',
+      width: 50,
+      height:5,
+      sx: 100,
+      sy: 50,
+      swx: 50,
+      swy: 5,
+      vx: 0,
+      vy: 25,
+      x: P1.x,
+      y: P1.y + 45,
+      dmg: 35,
+      reflect: false
+    }
+    sprites.push(wallLeft);
+    walls.push(wallLeft);
+    sprites.push(wallRight);
+    walls.push(wallRight);
+    sprites.push(wallTop);
+    walls.push(wallTop);
+    sprites.push(wallBottom);
+    walls.push(wallBottom);
+  }
+  if(shield && shieldOn){
+    shield = false;
+    shieldOn = false;
+  }
 
+}
 }
  //square attacks
 
@@ -781,15 +865,14 @@ if (moveDown){
  }
 
  if(xIsDown && player2){
-if (P2.x < 400){
+if (P2.x < P1.x){
 P1.x = P2.x - 50;
 }
-if (P2.x >= 400){
+else{
 P1.x = P2.x + 50;
 }
 
 P1.y = P2.y;
-
 
 }
  }
@@ -909,10 +992,10 @@ if (moveDown2){
  }
 
  if(xIsDown2 && player2){
-if (P1.x < 400){
+if (P1.x < P2.x){
 P2.x = P1.x - 50;
 }
-if (P1.x >= 400){
+else{
 P2.x = P1.x + 50;
 }
 
