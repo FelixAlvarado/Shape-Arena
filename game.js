@@ -31,6 +31,8 @@ var cSelectSprites = [];
 var pauseSprites = [];
 var clones = [];
 var walls = [];
+var clones2 = [];
+var walls2 = [];
 
 // sprites.push(line);
 manaSprites.push(health);
@@ -126,6 +128,9 @@ var reflect2 = false;
 var circleShoot = false;
 var shield = false;
 var shieldOn= false;
+ var circleShoot2 = false;
+ var shield2 = false;
+ var shieldOn2 = false;
 
 function removeObject(objectToRemove, array){
   var i = array.indexOf(objectToRemove);
@@ -255,6 +260,12 @@ if(triangleShoot2 && P2 == triangle2)
   triangleFire2();
   triangleShoot2 = false;
 }
+if(circleShoot2){
+  if (P2 == circle2){
+  circleFire2();
+  circleShoot2 = false;
+  }
+}
 if(spaceKeyIsDown2 || zIsDown2 || xIsDown2){
 if(P2 == square2){
   squareFire2();
@@ -306,11 +317,98 @@ if (player2){
     }
 
 }
+//walls2 dissapear if hitting missile
+for(var k = 0; k < walls2.length; k++){
+  var wall = walls2[k];
+  if(collision(missile, wall)){
+    if(shield2){
+      health2.swx = health2.swx + missile.dmg;
+    }
+    removeObject(wall, walls2);
+    removeObject(wall,sprites);
+    removeObject(missile, missiles);
+    removeObject(missile,sprites);
+    j--;
+    i--;
+    if(walls2.length == 0){
+      shield2 = false;
+      shieldOn2 = false;
+    }
+  }
+}
+// making clones2 dissapear is hitting missile
+      for(var j = 0; j < clones2.length; j++)
+      {
+        var clone = clones2[j];
+          if(collision(missile, clone)){
+            removeObject(clone, clones2);
+            removeObject(clone,sprites);
+            removeObject(missile, missiles);
+            removeObject(missile,sprites);
+            j--;
+            i--;
+        }
+  }
 
 }
 
 
 }
+//move walls2
+for(var i = 0; i < walls2.length; i++){
+  var wall = walls2[i];
+  if(shield2){
+
+    if (wall.name == 'left' || wall.name == 'top'){
+      wall.x = P2.x;
+      wall.y = P2.y;
+    }
+    if (wall.name == 'right'){
+      wall.x = P2.x + 45;
+      wall.y = P2.y;
+    }
+    if (wall.name == 'bottom'){
+      wall.x = P2.x;
+      wall.y = P2.y + 45;
+    }
+
+
+  }
+  if (!shield2){
+    wall.x += wall.vx;
+    wall.y += wall.vy;
+    // making clone dissapear is hitting wall
+          for(var j = 0; j < clones.length; j++)
+          {
+            var clone = clones[j];
+              if(collision(wall, clone)){
+                removeObject(clone, clones);
+                removeObject(clone,sprites);
+                removeObject(wall, walls2);
+                removeObject(wall,sprites);
+                j--;
+                i--;
+            }
+      }
+    if(wall.x < -wall.width || wall.x > canvas.width || wall.y < -wall.height || wall.y > canvas.height){
+      removeObject(wall, walls2);
+      removeObject(wall,sprites);
+      i--;
+    }
+    if(collision(wall, P1)){
+      removeObject(wall, walls2);
+      removeObject(wall,sprites);
+      health.swx = health.swx - wall.dmg;
+      if ((P1 == square && spaceKeyIsDown) || (P1 == square && zIsDown)){
+      health.swx = health.swx + wall.dmg;
+    }
+      if(health.swx <= 0){
+        gameState = OVER;
+      }
+      }
+  }
+}
+
 //move walls
 for(var i = 0; i < walls.length; i++){
   var wall = walls[i];
@@ -330,15 +428,72 @@ for(var i = 0; i < walls.length; i++){
   }
   if (!shield){
     wall.x += wall.vx;
-    wall.y += wall.vy;
+    wall.y += wall.vy
+    // making clones2 dissapear is hitting walls
+          for(var j = 0; j < clones2.length; j++)
+          {
+            var clone = clones2[j];
+              if(collision(wall, clone)){
+                removeObject(clone, clones2);
+                removeObject(clone,sprites);
+                removeObject(wall, walls);
+                removeObject(wall,sprites);
+                j--;
+                i--;
+            }
+      }
+    if(wall.x < -wall.width || wall.x > canvas.width || wall.y < -wall.height || wall.y > canvas.height){
+      removeObject(wall, walls);
+      removeObject(wall,sprites);
+      i--;
+    }
+    if(player2){
     if(collision(wall, P2)){
       removeObject(wall, walls);
       removeObject(wall,sprites);
       health2.swx = health2.swx - wall.dmg;
+      if ((P2 == square2 && spaceKeyIsDown2) || (P2 == square2 && zIsDown2)){
+      health2.swx = health2.swx + wall.dmg;
+    }
       if(health2.swx <= 0){
         gameState = OVER;
       }
       }
+    }
+  }
+}
+// moving clones2
+for(var i = 0; i < clones2.length; i++){
+  var clone = clones2[i];
+  if(player2){
+    if(clone.x > P1.x){
+      clone.x -= 3;
+    }
+    if (clone.x < P1.x){
+      clone.x += 3;
+    }
+
+    if(clone.y > P1.y){
+        clone.y -= 3;
+    }
+    if (clone.y < P1.y){
+      clone.y += 3;
+    }
+
+    if(collision(clone, P1)){
+      removeObject(clone, clones2);
+      removeObject(clone,sprites);
+        health.swx = health.swx - clone.dmg;
+      if ((P1 == square && spaceKeyIsDown) || (P1 == square && zIsDown)){
+      health.swx = health.swx + clone.dmg;
+    }
+      i--;
+      if(health.swx <= 0){
+        gameState = OVER;
+      }
+
+    }
+
   }
 }
 
@@ -420,6 +575,26 @@ for(var i = 0; i < missiles2.length; i++)
 
   }
 
+//walls dissapear if hitting missile
+
+for(var k = 0; k < walls.length; k++){
+  var wall = walls[k];
+  if(collision(missile, wall)){
+    if(shield){
+      health.swx = health.swx + missile.dmg;
+    }
+    removeObject(wall, walls);
+    removeObject(wall,sprites);
+    removeObject(missile, missiles2);
+    removeObject(missile,sprites);
+    j--;
+    i--;
+    if(walls.length == 0){
+      shield = false;
+      shieldOn = false;
+    }
+  }
+}
 // making clone dissapear is hitting missile
       for(var j = 0; j < clones.length; j++)
       {

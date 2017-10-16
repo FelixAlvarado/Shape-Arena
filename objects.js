@@ -103,6 +103,21 @@ y: 250,
 rotation: 0,
 }
 
+var circle2 =
+{
+width: 50,
+height: 50,
+sx: 0,
+sy: 50,
+swx: 50,
+swy: 50,
+vx:0,
+vy:0,
+x: 700,
+y: 250,
+rotation: 0,
+}
+
 var mana =
 {
   width: 250,

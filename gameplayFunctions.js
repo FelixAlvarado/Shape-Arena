@@ -272,6 +272,9 @@ function keyDown(){
       mana2.swx = mana2.swx - 25;
       triangleShoot2 = true;
     }
+    if (mana2.swx >= 30 && P2 == circle2){
+      circleShoot2 = true;
+    }
 
     spaceKeyIsDown2 = true;
       }
@@ -280,7 +283,7 @@ function keyDown(){
 
       case Z2:
       if (player2){
-      if (!moveDown2 && !moveUp2 && !moveLeft2 && !moveRight2 && P2 != square2)
+      if (!moveDown2 && !moveUp2 && !moveLeft2 && !moveRight2 && P2 != square2 && P2 != circle2)
       {
         break;
       }
@@ -289,6 +292,9 @@ function keyDown(){
         // mana2.swx = mana2.swx - 75;
         if (P2 == line2 && mana2.swx >= 50){
         lineShoot2 = true;
+      }
+      if (mana2.swx >= 75 && P2 == circle2 && player2){
+        circleShoot2 = true;
       }
         zIsDown2 = true;
         triangleShoot2 = true;
@@ -312,6 +318,9 @@ function keyDown(){
         if (mana2.swx >= 50 && P2 == line2){
         lineShoot2 = true;
         mana2.swx = mana2.swx - 50;
+      }
+      if (P2 == circle2){
+        circleShoot2 = true;
       }
         xIsDown2 = true;
         if (mana2.swx >= 100 && P2 == triangle2){
@@ -430,6 +439,9 @@ window.addEventListener("keyup", function (event)
 
     case X2:
     xIsDown2 = false;
+    if (shield2){
+      shieldOn2 = true;
+    }
     break;
 
     case PAUSE:
@@ -534,6 +546,143 @@ function drawPlayGame()
    }
    }
  }
+//circle2 attacks
+
+function circleFire2() {
+  if (spaceKeyIsDown2){
+        mana2.swx = mana2.swx - 30;
+    var missile = {
+      name: undefined,
+      width: 12,
+      height:12,
+      sx: 138,
+      sy: 38,
+      swx: 12,
+      swy: 12,
+      vx:0,
+      vy:0,
+      x: P2.x + 19,
+      y: P2.y + 19,
+      dmg: 20,
+      reflect: false
+    }
+
+    if (moveLeft2){
+      missile.vx = -21;
+    }
+    if (moveRight2){
+        missile.vx = 21;
+    }
+    if (moveUp2){
+      missile.vy = -21;
+    }
+    if (moveDown2){
+    missile.vy = 21;
+  }
+  sprites.push(missile);
+  missiles2.push(missile);
+  }
+if (zIsDown2){
+  mana2.swx = mana2.swx - 75;
+var clone = {
+  name: clone,
+  width: 50,
+  height: 50,
+  sx: 0,
+  sy: 50,
+  swx: 50,
+  swy: 50,
+  vx:0,
+  vy:0,
+  x: P2.x,
+  y: P2.y,
+  dmg: 30,
+}
+sprites.push(clone);
+clones2.push(clone);
+}
+
+if (xIsDown2){
+  if (!shield2 && mana2.swx >= 150){
+    mana2.swx = mana2.swx - 150;
+    shield2 = true;
+    var wallLeft = {
+      name: 'left',
+      width: 5,
+      height:50,
+      sx: 50,
+      sy: 50,
+      swx: 5,
+      swy: 50,
+      vx:-24,
+      vy:0,
+      x: P2.x,
+      y: P2.y,
+      dmg: 35,
+      reflect: false
+    }
+    var wallRight = {
+      name: 'right',
+      width: 5,
+      height:50,
+      sx: 50,
+      sy: 50,
+      swx: 5,
+      swy: 50,
+      vx: 24,
+      vy:0,
+      x: P2.x + 45,
+      y: P2.y,
+      dmg: 35,
+      reflect: false
+    }
+    var wallTop = {
+      name: 'top',
+      width: 50,
+      height:5,
+      sx: 100,
+      sy: 50,
+      swx: 50,
+      swy: 5,
+      vx: 0,
+      vy: -24,
+      x: P2.x,
+      y: P2.y,
+      dmg: 35,
+      reflect: false
+    }
+    var wallBottom = {
+      name: 'bottom',
+      width: 50,
+      height:5,
+      sx: 100,
+      sy: 50,
+      swx: 50,
+      swy: 5,
+      vx: 0,
+      vy: 24,
+      x: P2.x,
+      y: P2.y + 45,
+      dmg: 35,
+      reflect: false
+    }
+    sprites.push(wallLeft);
+    walls2.push(wallLeft);
+    sprites.push(wallRight);
+    walls2.push(wallRight);
+    sprites.push(wallTop);
+    walls2.push(wallTop);
+    sprites.push(wallBottom);
+    walls2.push(wallBottom);
+  }
+  if(shield2 && shieldOn2){
+    shield2 = false;
+    shieldOn2 = false;
+  }
+
+}
+}
+
 
 // circle attacks
 function circleFire() {
@@ -602,7 +751,7 @@ if (xIsDown){
       sy: 50,
       swx: 5,
       swy: 50,
-      vx:-25,
+      vx:-24,
       vy:0,
       x: P1.x,
       y: P1.y,
@@ -617,7 +766,7 @@ if (xIsDown){
       sy: 50,
       swx: 5,
       swy: 50,
-      vx: 25,
+      vx: 24,
       vy:0,
       x: P1.x + 45,
       y: P1.y,
@@ -633,7 +782,7 @@ if (xIsDown){
       swx: 50,
       swy: 5,
       vx: 0,
-      vy: -25,
+      vy: -24,
       x: P1.x,
       y: P1.y,
       dmg: 35,
@@ -648,7 +797,7 @@ if (xIsDown){
       swx: 50,
       swy: 5,
       vx: 0,
-      vy: 25,
+      vy: 24,
       x: P1.x,
       y: P1.y + 45,
       dmg: 35,

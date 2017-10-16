@@ -365,6 +365,11 @@ if (!player2 &&  gameState == CHARACTERSELECT && play){
     P2 = square2;
     redRemove();
   }
+  if (redLeft.x > 457.1 && redLeft.x < 457.99){
+  P2 = circle2;
+  sprites.push(circle2);
+  redRemove();
+}
       if (P1 != null){
       gameState = PLAYING;
     }
