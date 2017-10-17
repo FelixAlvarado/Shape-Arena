@@ -1,6 +1,7 @@
 Shape Arena
 
-A fighting game where one tries to bring their opponents health to 0.
+A fighting game with the goal of reducing your opponent's health to zero. Contol one of four different shapes,
+each with three unique attacks of vary damage and mana usage.
 
 Controls:
 
